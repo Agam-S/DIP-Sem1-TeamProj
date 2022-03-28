@@ -26,9 +26,10 @@ mongoose.Promise = global.Promise;
 app.use("/team", team);
 
 // Server Start
-app.listen(8080, () => {
-    console.log("Server Started at port 3000");
-})
+const server = app.listen(process.env.PORT || 8080, () => {
+    const port = server.address().port;
+    console.log(`Server is running on port ${port}`);
+  });
 
 app.get("/", (req, res) => {
     res.send({ message: "Welcome to the NBA API" });
