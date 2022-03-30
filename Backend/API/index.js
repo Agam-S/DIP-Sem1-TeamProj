@@ -1,18 +1,18 @@
 // Packages
 const express = require("express");
-const mongoose = require('mongoose');
-const cors = require('cors');
+const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
+require("dotenv").config();
 
 // Import Routes
-const team = require('./routes/team');
+const team = require("./routes/team");
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://admin:admin1234@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-{ useNewUrlParser: true }, () => {
-    console.log("Connected to DB")
-})
+mongoose.connect(process.env.DBS_CONNECTION, { useNewUrlParser: true }, () => {
+  console.log("Connected to DB");
+});
 
 // Middlewares
 app.use(cors());
@@ -27,11 +27,10 @@ app.use("/team", team);
 
 // Server Start
 const server = app.listen(process.env.PORT || 8080, () => {
-    const port = server.address().port;
-    console.log(`Server is running on port ${port}`);
-  });
+  const port = server.address().port;
+  console.log(`Server is running on port ${port}`);
+});
 
 app.get("/", (req, res) => {
-    res.send({ message: "Welcome to the NBA API" });
-  });
-  
+  res.send({ message: "Welcome to the NBA API" });
+});
