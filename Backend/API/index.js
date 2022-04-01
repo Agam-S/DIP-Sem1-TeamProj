@@ -11,7 +11,7 @@ const team = require("./routes/team");
 const player = require("./routes/player");
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://admin:<password>@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true }, () => {
+mongoose.connect(link, { useNewUrlParser: true }, () => {
   console.log("Connected to DB");
 });
 
@@ -25,7 +25,7 @@ mongoose.Promise = global.Promise;
 // Routes Redirection
 
 app.use("/team", team);
-app.use("/player", player);
+app.use("/players", player);
 
 // Server Start
 const server = app.listen(process.env.PORT || 8080, () => {
