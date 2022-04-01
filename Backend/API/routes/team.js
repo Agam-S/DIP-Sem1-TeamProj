@@ -14,7 +14,6 @@ router.get('/all', async (req, res) => {
     }
 });
 
-
 router.post("/create", async (req, res) => {
     try {
       const newTeam = new team({

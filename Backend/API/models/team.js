@@ -8,4 +8,6 @@ const teamSchema = new mongoose.Schema({
 
 });
 
+
+
 module.exports = mongoose.model('teams', teamSchema);
