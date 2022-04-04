@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateTeamsComponent } from './components/create-teams/create-teams.component';
-import { MainComponent } from './components/main/main.component';
+import { TeamComponent } from './components/team/Team.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 
@@ -12,16 +12,12 @@ import { AllPlayersComponent } from './components/all-players/all-players.compon
   declarations: [
     AppComponent,
     CreateTeamsComponent,
-    MainComponent,
+    TeamComponent,
     NavComponent,
-    AllPlayersComponent
+    AllPlayersComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

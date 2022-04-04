@@ -27,6 +27,6 @@ export class CreateTeamsComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/teams']);
   }
 }
