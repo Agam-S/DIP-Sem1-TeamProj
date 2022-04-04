@@ -9,6 +9,7 @@ import { TeamServiceService } from 'src/app/services/team-service.service';
   styleUrls: ['./create-teams.component.css'],
 })
 export class CreateTeamsComponent implements OnInit {
+  statusString: string;
   @ViewChild('teamName') teamNameInp: ElementRef;
   newTeam: ITeam;
 
@@ -23,7 +24,14 @@ export class CreateTeamsComponent implements OnInit {
       teamName: teamName,
     };
 
-    this._api.postTeam(this.newTeam).subscribe();
+    this._api.postTeam(this.newTeam).subscribe((res: any) => {
+      this.statusString = 'Team Successfully Added!';
+      if (teamName == '') {
+        {
+          this.statusString = 'Team Cannot Be Empty!';
+        }
+      }
+    });
   }
 
   goBack() {
