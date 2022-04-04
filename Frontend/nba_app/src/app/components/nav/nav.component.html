@@ -1,7 +1,13 @@
-<nav class="nav">
-    <ul>
-        <li><a routerLink="/players" (click)="setTitle('All Players')" type="button">All Players</a>
-        <li><a routerLink="/" (click)="setTitle('All Teams')" type="button">All Teams</a>
-        <li><a routerLink="/create" (click)="setTitle('Create Team')" type="button">Create Teams</a>
-    </ul>
-</nav>
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <!-- <a class="nav-link navbar-brand" [routerLink]="['/']"></a> -->
+      <a class="nav-link" [routerLink]="['/players']" (click)="closeNav()">All Players</a>
+      <a class="nav-link" [routerLink]="['/']" (click)="closeNav()">All Teams</a>
+      <a class="nav-link" [routerLink]="['/create']" (click)="closeNav()">Create a Team</a>
+    </div>
+  </div>
+  
+  <span class="navv" (click)="openNav()">&#9776; NBA APP</span>
+ 
+

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ITeam, Team } from '../models/Team';
+import { Player } from '../models/Player';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,11 @@ export class TeamServiceService {
 
   postTeam(team: ITeam): Observable<ITeam> {
     return this._http.post<ITeam>(this.baseUrl + "team/create", team);
+  }
+
+  getAllPlayers(): Observable<Player[]> {
+    const url = this.baseUrl + "players"
+
+    return this._http.get<Player[]>(url);
   }
 }

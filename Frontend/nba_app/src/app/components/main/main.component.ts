@@ -21,7 +21,4 @@ export class MainComponent implements OnInit {
 
   }
   
-  getTeams() {
-    console.log(this.teamsList)
-  }
 }

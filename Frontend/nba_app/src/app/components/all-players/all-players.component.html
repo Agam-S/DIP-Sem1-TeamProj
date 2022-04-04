@@ -1,3 +1,32 @@
-<div>
-    
-</div>
+<h1> Player List: </h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Rank</th>
+    <th scope="col">Name</th>
+    <th scope="col">PER</th>
+  </tr>
+  </thead>
+  <tbody class="table-hover">
+  <tr *ngFor="let p of playerList; index as i">
+
+    <td>{{p.RK}}</td>
+    <td>{{p.PLAYER_NAME}}</td>
+    <td>{{p.PER}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<!-- <div id="playerOutput" *ngFor="let p of this.playerList">
+     <p>{{p.RK}}</p>
+     <p>{{p.PLAYER_NAME}}</p>
+     <p>{{p.PER}}</p>
+</div> -->

@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
 
@@ -12,8 +12,14 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public setTitle(newTitle: string) {
-    this.titleService.setTitle(newTitle);
+
+
+  openNav() {
+    document.getElementById('myNav').style.height = '100%';
+  }
+
+  closeNav() {
+    document.getElementById('myNav').style.height = '0%';
   }
 
 }
