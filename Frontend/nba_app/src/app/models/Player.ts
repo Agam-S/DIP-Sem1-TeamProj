@@ -1,17 +1,17 @@
 export class Player {
-    rank: string;
-    name: string;
+    RK: string;
+    PLAYER_NAME: string;
     PER: string;
 
-    constructor(_rank: string, _name: string, _PER: string) {
-        this.rank = _rank;
-        this.name = _name;
+    constructor(_RK: string, _PLAYER_NAME: string, _PER: string) {
+        this.RK = _RK;
+        this.PLAYER_NAME = _PLAYER_NAME;
         this.PER = _PER;
     }
 }
 
 export interface IPlayer {
-    rank: string;
-    name: string;
+    RK: string;
+    PLAYER_NAME: string;
     PER: string;
 }

@@ -1,22 +1,22 @@
-div, h1, input {
-    text-align: center;
-    font-size: 26px;
-    display: block;
-    margin: 0 auto;
-    padding: 1em 1em;
+div,
+h1,
+input {
+  text-align: center;
+  font-size: 26px;
+  display: block;
+  margin: 0 auto;
+  padding: 1em 1em;
 }
 
-
 button {
-    background-color: #ff0000; 
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin: 10px;
+}

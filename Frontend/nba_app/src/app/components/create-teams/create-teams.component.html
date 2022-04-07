@@ -1,6 +1,12 @@
 <div class="div">
-    <h1>Create Team</h1>
-    <label>Team Name: </label>
-    <input id="teamInp" #teamName/>
-    <button class="btn btn-danger" id="enterTeamBtn" (click)="postNewTeam()">Enter</button>
+  <h1>Create Team</h1>
+  <label>Team Name: </label>
+  <input id="teamInp" #teamName />
+  <button class="btn btn-warning" id="enterTeamBtn" (click)="goBack()">
+    Go to myTeams
+  </button>
+  <button class="btn btn-danger" id="enterTeamBtn" (click)="postNewTeam()">
+    Enter
+  </button>
+  <div class="div">{{ this.statusString }}</div>
 </div>
