@@ -23,7 +23,13 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "src/styles.scss",
+              "src/assets/css/nucleo-icons.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/assets/scss/blk-design-system.scss",
+              "src/assets/demo/demo.css"
+            ],
             "scripts": []
           },
           "configurations": {
