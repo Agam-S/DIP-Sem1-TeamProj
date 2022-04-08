@@ -20,3 +20,7 @@ button {
   cursor: pointer;
   margin: 10px;
 }
+
+input {
+  width: 70%;
+}

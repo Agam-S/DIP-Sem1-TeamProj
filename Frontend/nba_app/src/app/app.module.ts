@@ -7,6 +7,9 @@ import { CreateTeamsComponent } from './components/create-teams/create-teams.com
 import { TeamComponent } from './components/team/Team.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,15 @@ import { AllPlayersComponent } from './components/all-players/all-players.compon
     NavComponent,
     AllPlayersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MDBBootstrapModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
