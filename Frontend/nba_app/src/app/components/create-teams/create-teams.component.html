@@ -13,5 +13,12 @@
   <button class="btn btn-danger" id="enterTeamBtn" (click)="postNewTeam()">
     Enter
   </button>
-  <div class="div">{{ this.statusString }}</div>
+
+  <div
+    *ngIf="this.statusString"
+    class="alert alert-primary alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>Heads Up!</strong> {{ this.statusString }}
+  </div>
 </div>
