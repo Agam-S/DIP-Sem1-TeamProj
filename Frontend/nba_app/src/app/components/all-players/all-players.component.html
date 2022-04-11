@@ -1,5 +1,5 @@
 <h1>Players List</h1>
-<table class="table table-striped">
+<!--<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Rank</th>
@@ -14,10 +14,68 @@
       <td>{{ p.PER }}</td>
     </tr>
   </tbody>
-</table>
-
-<!-- <div id="playerOutput" *ngFor="let p of this.playerList">
-     <p>{{p.RK}}</p>
-     <p>{{p.PLAYER_NAME}}</p>
-     <p>{{p.PER}}</p>
-</div> -->
+</table> -->
+<div class="container">
+  <div class="row">
+    <div class="search-player">
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="Player/PER/Rank"
+      />
+    </div>
+  </div>
+  <div>
+    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+      <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Name</th>
+          <th scope="col">PER</th>
+        </tr>
+      </thead>
+      <tbody class="table-hover">
+        <tr *ngFor="let el of playerList | filter: searchText; let i = index">
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+            scope="row"
+          >
+            {{ el.RK }}
+          </td>
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+            {{ el.PLAYER_NAME }}
+          </td>
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+            {{ el.PER }}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+        <tr>
+          <td colspan="4">
+            <mdb-table-pagination
+              [tableEl]="tableEl"
+              [searchDataSource]="elements"
+            ></mdb-table-pagination>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

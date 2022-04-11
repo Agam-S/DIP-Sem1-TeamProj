@@ -1,7 +1,9 @@
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <div class="overlay-content">
-    <!-- <a class="nav-link navbar-brand" [routerLink]="['/']"></a> -->
+    <a class="nav-link navbar-brand" (click)="closeNav()" [routerLink]="['/']"
+      >NBA APP</a
+    >
     <a class="nav-link" [routerLink]="['/']" (click)="closeNav()"
       >All Players</a
     >
@@ -14,4 +16,4 @@
   </div>
 </div>
 
-<span class="navv" (click)="openNav()">&#9776; NBA APP</span>
+<span class="navv" (click)="openNav()">&#9776;</span>
