@@ -1,24 +1,26 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { ITeam } from 'src/app/models/Team';
-import { TeamServiceService } from 'src/app/services/team-service.service';
 import {
   MdbTablePaginationComponent,
   MdbTableDirective,
 } from 'angular-bootstrap-md';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
+import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Player } from 'src/app/models/Player';
 
 @Component({
-  selector: 'app-create-teams',
-  templateUrl: './create-teams.component.html',
-  styleUrls: ['./create-teams.component.css'],
+  selector: 'app-edit-team',
+  templateUrl: './edit-team.component.html',
+  styleUrls: ['./edit-team.component.css']
 })
-export class CreateTeamsComponent implements OnInit, AfterViewInit {
+export class EditTeamComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  statusString: string;
-  @ViewChild('teamName') teamNameInp: ElementRef;
 
   elements: any = [];
   previous: any = [];
@@ -26,13 +28,11 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
 
   searchText;
-  newTeam: ITeam;
 
   constructor(
-    private _api: TeamServiceService, 
-    private router: Router,
+    private _api: TeamServiceService,
     private cdRef: ChangeDetectorRef
-    ) {}
+  ) {}
 
   ngOnInit() {
     this._api
@@ -55,30 +55,9 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(10);
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(15);
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
-  }
-
-  postNewTeam() {
-    let teamName = this.teamNameInp.nativeElement.value;
-
-    this.newTeam = {
-      teamName: teamName,
-    };
-
-    this._api.postTeam(this.newTeam).subscribe((res: any) => {
-      this.statusString = 'Team Successfully Added!';
-      if (teamName == '') {
-        {
-          this.statusString = 'Team Cannot Be Empty!';
-        }
-      }
-    });
-  }
-
-  goBack() {
-    this.router.navigate(['/teams']);
   }
 }
