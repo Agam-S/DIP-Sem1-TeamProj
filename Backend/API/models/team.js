@@ -6,6 +6,11 @@ const teamSchema = new mongoose.Schema({
         required: true,
     },
 
+    players:[
+        {
+            type: String,
+        }
+    ]
 });
 
 

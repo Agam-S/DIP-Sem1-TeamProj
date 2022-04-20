@@ -17,7 +17,8 @@ router.get('/all', async (req, res) => {
 router.post("/create", async (req, res) => {
     try {
       const newTeam = new team({
-        teamName: req.body.teamName
+        teamName: req.body.teamName,
+        players: req.body.players
       });
       const savedTeam = await newTeam.save();
       res.json(savedTeam);
