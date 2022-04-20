@@ -33,7 +33,7 @@
           </tr>
         </thead>
         <tbody class="table-hover">
-          <tr *ngFor="let el of playerList | filter: searchText; let i = index">
+          <tr *ngFor="let item of playerList | filter: searchText; let i = index">
             <td
               *ngIf="
                 i + 1 >= mdbTablePagination.firstItemIndex &&
@@ -41,7 +41,7 @@
               "
               scope="row"
             >
-              {{ el.RK }}
+              {{ item.RK }}
             </td>
             <td
               *ngIf="
@@ -49,7 +49,7 @@
                 i < mdbTablePagination.lastItemIndex
               "
             >
-              {{ el.PLAYER_NAME }}
+              {{ item.PLAYER_NAME }}
             </td>
             <td
               *ngIf="
@@ -57,7 +57,7 @@
                 i < mdbTablePagination.lastItemIndex
               "
             >
-              {{ el.PER }}
+              {{ item.PER }}
             </td>
             <td
             *ngIf="
@@ -65,7 +65,8 @@
               i < mdbTablePagination.lastItemIndex
             "
           >
-            <input type="checkbox" >
+          <input type="checkbox" [(ngModel)]="item.CHECKED">
+        
           </td>
           </tr>
         </tbody>
@@ -99,4 +100,5 @@
   <button class="btn btn-danger" id="enterTeamBtn" (click)="postNewTeam()">
     Enter
   </button>
+
 </div>

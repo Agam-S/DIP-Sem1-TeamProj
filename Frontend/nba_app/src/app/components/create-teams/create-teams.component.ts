@@ -24,6 +24,9 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   previous: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
+  
+
+  SelectedPlayers = [];
 
   searchText;
   newTeam: ITeam;
@@ -31,13 +34,14 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   constructor(
     private _api: TeamServiceService, 
     private router: Router,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
     ) {}
 
   ngOnInit() {
     this._api
       .getAllPlayers()
       .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
+      
 
     const result = this.playerList ? this.playerList.length : 200;
 
@@ -66,7 +70,10 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
 
     this.newTeam = {
       teamName: teamName,
+      players: this.result as any,
+      
     };
+    console.log(this.SelectedPlayers);
 
     this._api.postTeam(this.newTeam).subscribe((res: any) => {
       this.statusString = 'Team Successfully Added!';
@@ -81,4 +88,11 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   goBack() {
     this.router.navigate(['/teams']);
   }
+  get result() {
+    return this.playerList.filter((item) => item.CHECKED);
+    
+  }
+  
+
+
 }
