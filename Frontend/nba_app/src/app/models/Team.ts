@@ -1,4 +1,5 @@
 export class Team {
+    _id: number;
     teamName: string;
 
     constructor(_teamName: string) {

@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import { Player } from 'src/app/models/Player';
 import { TeamServiceService } from 'src/app/services/team-service.service';
+import { Team } from 'src/app/models/Team';
+import { ViewServiceService } from 'src/app/services/view-service.service';
 
 @Component({
   selector: 'app-view-team',
@@ -25,21 +27,24 @@ export class ViewTeamComponent implements OnInit, AfterViewInit{
   elements: any = [];
   previous: any = [];
   playerList: Player[];
-  headElements = ['RK', 'PLAYER_NAME', 'PER'];
+  headElements = ['RK', 'PLAYER_NAME', 'PER', 'teamName'];
+  id: string;
+
+  Team: Team;
 
   searchText;
 
   constructor(
-    private _api: TeamServiceService,
+    private _api: ViewServiceService,
     private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this._api
-      .getAllPlayers()
+      .viewTeam(this.id)
       .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
 
-    const result = this.playerList ? this.playerList.length : 200;
+    const result = this.playerList ? this.playerList.length : 10;
 
     for (let i = 1; i <= result; i++) {
       this.elements.push({

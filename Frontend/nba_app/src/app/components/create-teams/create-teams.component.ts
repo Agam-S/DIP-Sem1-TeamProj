@@ -73,7 +73,6 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
       players: this.result as any,
       
     };
-    console.log(this.SelectedPlayers);
 
     this._api.postTeam(this.newTeam).subscribe((res: any) => {
       this.statusString = 'Team Successfully Added!';
