@@ -1,4 +1,17 @@
-<h1>placeholder</h1>
+<h2>Your Team !</h2>
+<br />
+<div class="center">
+  <div *ngIf="Team">
+    <h5>Team Name: {{ Team.teamName }}</h5>
+  </div>
+  <div *ngFor="let t of Team.players">
+    <h5>Name: {{ t.PLAYER_NAME }}</h5>
+  </div>
+
+</div>
+
+
+<!-- <h1>placeholder</h1>
 <div class="container">
   <div class="row">
     <div class="search-player">
@@ -62,4 +75,4 @@
       </tfoot>
     </table>
   </div>
-</div>
+</div> -->

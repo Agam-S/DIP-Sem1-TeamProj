@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'create', component: CreateTeamsComponent },
   { path: 'teams', component: TeamComponent },
   {path: 'edit', component: EditTeamComponent},
-  {path: 'view', component: ViewTeamComponent}
+  {path: 'team/view', component: ViewTeamComponent}
 ];
 
 @NgModule({

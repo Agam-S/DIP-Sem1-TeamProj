@@ -13,6 +13,8 @@ import { Player } from 'src/app/models/Player';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Team } from 'src/app/models/Team';
 import { ViewServiceService } from 'src/app/services/view-service.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-team',
@@ -29,20 +31,29 @@ export class ViewTeamComponent implements OnInit, AfterViewInit{
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER', 'teamName'];
   id: string;
-
-  Team: Team;
+  subscription: Subscription;
+  Team: any;
 
   searchText;
 
   constructor(
-    private _api: ViewServiceService,
+    private data: ViewServiceService, private _api: TeamServiceService,  private router: Router,
     private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    this._api
-      .viewTeam(this.id)
-      .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
+    this.subscription = this.data.currentMessage.subscribe(
+      (id) => (this.id = id)
+      
+    );
+
+    if (this.id == 'default message') {
+      this.router.navigate(['/teams']);
+    }
+
+    this.data.viewTeam(this.id).subscribe((res) => {
+      this.Team = res;
+    });
 
     const result = this.playerList ? this.playerList.length : 10;
 
@@ -64,6 +75,9 @@ export class ViewTeamComponent implements OnInit, AfterViewInit{
     this.mdbTablePagination.calculateFirstItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
 
