@@ -1,0 +1,12 @@
+h1 {
+    text-align: center;
+  }
+  
+  .table-hover :hover {
+    background-color: rgb(224, 103, 248);
+  }
+  input {
+    padding: 20px;
+    margin: 10px;
+  }
+  

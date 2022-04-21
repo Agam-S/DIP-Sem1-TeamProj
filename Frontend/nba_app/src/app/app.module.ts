@@ -10,6 +10,7 @@ import { AllPlayersComponent } from './components/all-players/all-players.compon
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EditTeamComponent } from './components/edit-team/edit-team.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     TeamComponent,
     NavComponent,
     AllPlayersComponent,
+    EditTeamComponent,
   ],
   imports: [
     BrowserModule,

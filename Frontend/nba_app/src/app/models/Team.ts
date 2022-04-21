@@ -8,4 +8,6 @@ export class Team {
 
 export interface ITeam {
     teamName: string;
+    players: [];
+
 }

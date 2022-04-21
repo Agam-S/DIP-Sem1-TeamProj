@@ -2,6 +2,7 @@ export class Player {
     RK: string;
     PLAYER_NAME: string;
     PER: string;
+    CHECKED : boolean;
 
     constructor(_RK: string, _PLAYER_NAME: string, _PER: string) {
         this.RK = _RK;
@@ -14,4 +15,5 @@ export interface IPlayer {
     RK: string;
     PLAYER_NAME: string;
     PER: string;
+    CHECKED : boolean;
 }
