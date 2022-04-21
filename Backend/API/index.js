@@ -11,7 +11,7 @@ const team = require("./routes/team");
 const player = require("./routes/player");
 
 // MongoDB Connection
-mongoose.connect(link, { useNewUrlParser: true }, () => {
+mongoose.connect('mongodb+srv://admin:admin1234@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true }, () => {
   console.log("Connected to DB");
 });
 

@@ -27,4 +27,13 @@ router.post("/create", async (req, res) => {
     }
   });
 
+router.get("/view/:_id", async (req, res) => {
+  try { 
+    const viewTeam = await team.findById(req.params._id)
+    res.json (viewTeam)
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 module.exports = router;
