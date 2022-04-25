@@ -92,6 +92,4 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
     
   }
   
-
-
 }

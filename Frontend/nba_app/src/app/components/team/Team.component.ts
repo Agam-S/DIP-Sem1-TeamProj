@@ -37,4 +37,9 @@ export class TeamComponent implements OnInit, OnDestroy {
     this.data.changeMessage(this.idString);
     this.router.navigate(['/team/view']);
   }
+  editTeam(_id: string) {
+    this.idString = _id;
+    this.data.changeMessage(this.idString);
+    this.router.navigate(['/team/edit']);
+  }
 }

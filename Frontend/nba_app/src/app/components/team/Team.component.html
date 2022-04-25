@@ -11,7 +11,7 @@
 
     <p class="card-text">Players Here</p>
     <div class="container">
-      <button href="#" [routerLink]="['/edit']" class="btn btn-primary">Edit</button>
+      <button (click)="editTeam(t._id)" class="btn btn-primary">Edit</button>
       
       <button (click)="viewTeam(t._id)" class="btn btn-danger">View</button>
     </div>

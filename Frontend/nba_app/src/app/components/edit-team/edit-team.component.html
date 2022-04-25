@@ -1,90 +1,124 @@
-<h1>Edit Team</h1>
-<!--<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Rank</th>
-      <th scope="col">Name</th>
-      <th scope="col">PER</th>
-    </tr>
-  </thead>
-  <tbody class="table-hover">
-    <tr *ngFor="let p of playerList; index as i">
-      <td>{{ p.RK }}</td>
-      <td>{{ p.PLAYER_NAME }}</td>
-      <td>{{ p.PER }}</td>
-    </tr>
-  </tbody>
-</table> -->
-<div class="container">
-  <div class="row">
-    <div class="search-player">
-      <input
-        class="form-control"
-        type="text"
-        name="search"
-        [(ngModel)]="searchText"
-        autocomplete="off"
-        placeholder="Player/PER/Rank"
-      />
+<div class="div">
+  <h1>Edit Team</h1>
+  <div class="div" *ngIf="Team">
+  <input
+    class="form-control"
+    type="text"
+    id="teamInp"
+    #teamName
+    value="{{Team.teamName}}" 
+  />
+</div>
+
+  <div class="container">
+    <div class="row">
+      <div class="search-player">
+        <input
+          class="form-control"
+          type="text"
+          id="playerSearchbar"
+          name="search"
+          [(ngModel)]="searchText"
+          autocomplete="off"
+          placeholder="Player/PER/Rank"
+        />
+      </div>
+    </div>
+    <div>
+      <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+        <thead>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Name</th>
+            <th scope="col">PER</th>
+            <th scope="col">Add to team</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          <tr *ngFor="let el of Team.players">
+            <td>
+              {{ el.RK }}
+            </td>
+            <td>
+              {{ el.PLAYER_NAME }}
+            </td>
+            <td>
+              {{ el.PER }}
+            </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="el.CHECKED">
+          </td>
+          </tr>
+        </tbody>
+        <tbody class="table-hover">
+          <tr *ngFor="let item of playerList | filter: searchText; let i = index">
+            <td
+              *ngIf="
+                i + 1 >= mdbTablePagination.firstItemIndex &&
+                i < mdbTablePagination.lastItemIndex
+              "
+              scope="row"
+            >
+              {{ item.RK }}
+            </td>
+            <td
+              *ngIf="
+                i + 1 >= mdbTablePagination.firstItemIndex &&
+                i < mdbTablePagination.lastItemIndex
+              "
+            >
+              {{ item.PLAYER_NAME }}
+            </td>
+            <td
+              *ngIf="
+                i + 1 >= mdbTablePagination.firstItemIndex &&
+                i < mdbTablePagination.lastItemIndex
+              "
+            >
+              {{ item.PER }}
+            </td>
+            <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+          <input type="checkbox" [(ngModel)]="item.CHECKED">
+        
+          </td>
+          </tr>
+        </tbody>
+        <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="4">
+              <mdb-table-pagination
+                [tableEl]="tableEl"
+                [searchDataSource]="elements"
+              ></mdb-table-pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   </div>
-  <div>
-    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
-      <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Name</th>
-          <th scope="col">PER</th>
-          <th scope="col">Add to team</th>
-        </tr>
-      </thead>
-      <tbody class="table-hover">
-        <tr *ngFor="let el of playerList | filter: searchText; let i = index">
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-            scope="row"
-          >
-            {{ el.RK }}
-          </td>
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
-            {{ el.PLAYER_NAME }}
-          </td>
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
-            {{ el.PER }}
-          </td>
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
-            <input type="checkbox" >
-          </td>
-        </tr>
-      </tbody>
-      <tfoot class="grey lighten-5 w-100">
-        <tr>
-          <td colspan="4">
-            <mdb-table-pagination
-              [tableEl]="tableEl"
-              [searchDataSource]="elements"
-            ></mdb-table-pagination>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  <!-- <div
+  *ngIf="this.statusString"
+  class="alert alert-primary alert-dismissible fade show"
+  role="alert"
+>
+  <strong>Heads Up!</strong> {{ this.statusString }}
 </div>
+</div> -->
+
+<div class="div">
+<button class="btn btn-warning" id="enterTeamBtn" (click)="goBack()">
+  Go to myTeams
+</button>
+<button class="btn btn-danger" id="enterTeamBtn">
+  EDIT ITTTT
+</button>
+
+</div>
+
+
+

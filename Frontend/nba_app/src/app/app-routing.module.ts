@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: AllPlayersComponent },
   { path: 'create', component: CreateTeamsComponent },
   { path: 'teams', component: TeamComponent },
-  {path: 'edit', component: EditTeamComponent},
+  {path: 'team/edit', component: EditTeamComponent},
   {path: 'team/view', component: ViewTeamComponent}
 ];
 
