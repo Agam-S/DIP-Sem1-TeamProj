@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
   templateUrl: './view-team.component.html',
   styleUrls: ['./view-team.component.css']
 })
-export class ViewTeamComponent implements OnInit, AfterViewInit{
+export class ViewTeamComponent implements OnInit{
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
@@ -55,27 +55,8 @@ export class ViewTeamComponent implements OnInit, AfterViewInit{
       this.Team = res;
     });
 
-    const result = this.playerList ? this.playerList.length : 10;
-
-    for (let i = 1; i <= result; i++) {
-      this.elements.push({
-        RK: 'RK',
-        PLAYER_NAME: 'PLAYER_NAME',
-        PER: 'PER',
-      });
-    }
-
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
   }
 
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(15);
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-    this.cdRef.detectChanges();
-  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

@@ -1,30 +1,20 @@
-<h2>Your Team !</h2>
+<!-- <h2>Your Team !</h2>
 <br />
+
 <div class="center">
-  <div *ngIf="Team">
-    <h5>Team Name: {{ Team.teamName }}</h5>
-  </div>
+
   <div *ngFor="let t of Team.players">
     <h5>Name: {{ t.PLAYER_NAME }}</h5>
   </div>
 
+</div> -->
+
+
+<div *ngIf="Team">
+  <h1> <strong>{{ Team.teamName }}</strong></h1>
 </div>
-
-
-<!-- <h1>placeholder</h1>
 <div class="container">
-  <div class="row">
-    <div class="search-player">
-      <input
-        class="form-control"
-        type="text"
-        name="search"
-        [(ngModel)]="searchText"
-        autocomplete="off"
-        placeholder="Player/PER/Rank"
-      />
-    </div>
-  </div>
+
   <div>
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead>
@@ -35,44 +25,22 @@
         </tr>
       </thead>
       <tbody class="table-hover">
-        <tr *ngFor="let el of playerList | filter: searchText; let i = index">
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-            scope="row"
-          >
+        <tr *ngFor="let el of Team.players">
+          <td>
             {{ el.RK }}
           </td>
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
+          <td>
             {{ el.PLAYER_NAME }}
           </td>
-          <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
+          <td>
             {{ el.PER }}
           </td>
         </tr>
       </tbody>
-      <tfoot class="grey lighten-5 w-100">
-        <tr>
-          <td colspan="4">
-            <mdb-table-pagination
-              [tableEl]="tableEl"
-              [searchDataSource]="elements"
-            ></mdb-table-pagination>
-          </td>
-        </tr>
-      </tfoot>
     </table>
   </div>
-</div> -->
+<div class="container">
+  <button class="btn btn-danger" [routerLink]="['/teams']">Go Back</button>
+  <button class="btn btn-primary">Generate Win Percentage</button>
+</div>
+</div>
