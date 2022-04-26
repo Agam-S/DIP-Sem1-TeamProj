@@ -8,12 +8,14 @@ import {
   ViewChild,
   AfterViewInit,
   ChangeDetectorRef,
+  ElementRef,
 } from '@angular/core';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Player } from 'src/app/models/Player';
 import { Subscription } from 'rxjs';
 import { ViewServiceService } from 'src/app/services/view-service.service';
 import { Router } from '@angular/router';
+import { ITeam } from 'src/app/models/Team';
 
 @Component({
   selector: 'app-edit-team',
@@ -27,16 +29,20 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
 
   elements: any = [];
   previous: any = [];
-  playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
+
+  filerList: any;
+  filerData: any;
+  playerList: Player[];
+  Team: any;
 
   searchText;
 
   id: string;
   subscription: Subscription;
-  Team: any;
-  filerList: any;
-  filerData: any;
+  
+  @ViewChild('teamName') teamNameInp: ElementRef;
+  newTeam: ITeam;
 
   constructor(
     private _api: TeamServiceService,
@@ -105,7 +111,13 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   }
   putEditTeam() {
     const finalList = this.reresult.concat(this.result);
-    console.log(finalList);
+    let teamName = this.teamNameInp.nativeElement.value;
+
+    this.newTeam = {
+      teamName: teamName,
+      players: finalList as any,
     };
+    // put this.newTeam here //
+  };
 }
 
