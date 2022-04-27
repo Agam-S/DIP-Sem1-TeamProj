@@ -8,6 +8,7 @@ require("dotenv").config();
 
 // Import Routes
 const team = require("./routes/team");
+const player = require("./routes/player");
 
 // MongoDB Connection
 mongoose.connect(process.env.DBS_CONNECTION, { useNewUrlParser: true }, () => {
@@ -22,8 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 mongoose.Promise = global.Promise;
 
 // Routes Redirection
-
 app.use("/team", team);
+app.use("/players", player);
+
 
 // Server Start
 const server = app.listen(process.env.PORT || 8080, () => {

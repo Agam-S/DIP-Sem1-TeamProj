@@ -1,0 +1,21 @@
+<h1>Teams</h1>
+<div
+  class="card"
+  style="width: 18rem"
+  id="teamOutput"
+  *ngFor="let t of this.teamsList"
+>
+  <img class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title">{{ t.teamName }}</h5>
+
+    <div class="container">
+      <button (click)="editTeam(t._id)" class="btn btn-primary">Edit</button>
+
+      <button (click)="viewTeam(t._id)" class="btn btn-danger">View</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="this.teamsList == ''">
+  <h6 class="empty"><i>No Teams found...</i></h6>
+</div>

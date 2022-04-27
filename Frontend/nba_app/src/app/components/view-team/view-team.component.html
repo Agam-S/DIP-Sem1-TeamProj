@@ -1,0 +1,46 @@
+<!-- <h2>Your Team !</h2>
+<br />
+
+<div class="center">
+
+  <div *ngFor="let t of Team.players">
+    <h5>Name: {{ t.PLAYER_NAME }}</h5>
+  </div>
+
+</div> -->
+
+
+<div *ngIf="Team">
+  <h1> <strong>{{ Team.teamName }}</strong></h1>
+</div>
+<div class="container">
+
+  <div>
+    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+      <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">Name</th>
+          <th scope="col">PER</th>
+        </tr>
+      </thead>
+      <tbody class="table-hover">
+        <tr *ngFor="let el of Team.players">
+          <td>
+            {{ el.RK }}
+          </td>
+          <td>
+            {{ el.PLAYER_NAME }}
+          </td>
+          <td>
+            {{ el.PER }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div class="container">
+  <button class="btn btn-danger" [routerLink]="['/teams']">Go Back</button>
+  <button class="btn btn-primary">Generate Win Percentage</button>
+</div>
+</div>
