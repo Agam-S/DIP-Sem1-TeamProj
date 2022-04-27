@@ -26,4 +26,10 @@ export class TeamServiceService {
 
     return this._http.get<Player[]>(url);
   }
+
+  updateTeam(newTeam: ITeam,_id: string): Observable<ITeam> {
+    const url = this.baseUrl + "team/edit/" + _id;
+    
+    return this._http.put<ITeam>(url, newTeam);
+  }
 }

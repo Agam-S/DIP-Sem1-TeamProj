@@ -30,7 +30,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   elements: any = [];
   previous: any = [];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
-
+  statusString: string;
   filerList: any;
   filerData: any;
   playerList: Player[];
@@ -118,6 +118,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
       players: finalList as any,
     };
     // put this.newTeam here //
+    this._api.updateTeam(this.newTeam, this.id).subscribe(); 
   };
 }
 
