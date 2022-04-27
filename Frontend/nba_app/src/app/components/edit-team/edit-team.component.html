@@ -1,14 +1,14 @@
 <div class="div">
   <h1>Edit Team</h1>
   <div class="div" *ngIf="Team">
-  <input
-    class="form-control"
-    type="text"
-    id="teamInp"
-    #teamName
-    value="{{Team.teamName}}" 
-  />
-</div>
+    <input
+      class="form-control"
+      type="text"
+      id="teamInp"
+      #teamName
+      value="{{ Team.teamName }}"
+    />
+  </div>
 
   <div class="container">
     <div class="row">
@@ -45,13 +45,15 @@
             <td>
               {{ el.PER }}
             </td>
-          <td>
-            <input type="checkbox" [(ngModel)]="el.CHECKED">
-          </td>
+            <td>
+              <input type="checkbox" [(ngModel)]="el.CHECKED" />
+            </td>
           </tr>
         </tbody>
         <tbody class="table-hover">
-          <tr *ngFor="let item of playerList | filter: searchText; let i = index">
+          <tr
+            *ngFor="let item of playerList | filter: searchText; let i = index"
+          >
             <td
               *ngIf="
                 i + 1 >= mdbTablePagination.firstItemIndex &&
@@ -78,14 +80,13 @@
               {{ item.PER }}
             </td>
             <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
-          <input type="checkbox" [(ngModel)]="item.CHECKED">
-        
-          </td>
+              *ngIf="
+                i + 1 >= mdbTablePagination.firstItemIndex &&
+                i < mdbTablePagination.lastItemIndex
+              "
+            >
+              <input type="checkbox" [(ngModel)]="item.CHECKED" />
+            </td>
           </tr>
         </tbody>
         <tfoot class="grey lighten-5 w-100">
@@ -101,24 +102,20 @@
       </table>
     </div>
   </div>
-  <!-- <div
-  *ngIf="this.statusString"
-  class="alert alert-primary alert-dismissible fade show"
-  role="alert"
->
-  <strong>Heads Up!</strong> {{ this.statusString }}
+  <div
+    *ngIf="this.statusString"
+    class="alert alert-primary alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>Heads Up!</strong> {{ this.statusString }}
+  </div>
 </div>
-</div> -->
 
 <div class="div">
-<button class="btn btn-warning" id="enterTeamBtn" (click)="goBack()">
-  Go to myTeams
-</button>
-<button class="btn btn-danger" id="enterTeamBtn" (click)="putEditTeam()">
-  EDIT ITTTT
-</button>
-
+  <button class="btn btn-warning" id="enterTeamBtn" (click)="goBack()">
+    Go to myTeams
+  </button>
+  <button class="btn btn-danger" id="enterTeamBtn" (click)="putEditTeam()">
+    Edit Team
+  </button>
 </div>
-
-
-

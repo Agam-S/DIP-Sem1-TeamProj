@@ -20,7 +20,7 @@ import { ITeam } from 'src/app/models/Team';
 @Component({
   selector: 'app-edit-team',
   templateUrl: './edit-team.component.html',
-  styleUrls: ['./edit-team.component.css']
+  styleUrls: ['./edit-team.component.css'],
 })
 export class EditTeamComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTablePaginationComponent, { static: true })
@@ -40,33 +40,33 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
 
   id: string;
   subscription: Subscription;
-  
+
   @ViewChild('teamName') teamNameInp: ElementRef;
   newTeam: ITeam;
 
   constructor(
     private _api: TeamServiceService,
-    private cdRef: ChangeDetectorRef, private data: ViewServiceService,  private router: Router,
+    private cdRef: ChangeDetectorRef,
+    private data: ViewServiceService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-
-      this._api
+    this._api
       .getAllPlayers()
       .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
 
-        this.subscription = this.data.currentMessage.subscribe(
-          (id) => (this.id = id)
-          
-        );
-    
-        if (this.id == 'default message') {
-          this.router.navigate(['/teams']);
-        }
+    this.subscription = this.data.currentMessage.subscribe(
+      (id) => (this.id = id)
+    );
 
-        this.data.viewTeam(this.id).subscribe((res) => {
-          this.Team = res;
-        });
+    if (this.id == 'default message') {
+      this.router.navigate(['/teams']);
+    }
+
+    this.data.viewTeam(this.id).subscribe((res) => {
+      this.Team = res;
+    });
 
     //   this.playerList.forEach(players => {
     //     this.filerData.RK = players.RK;
@@ -78,7 +78,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
 
     //     this.playerList = this.playerList.filter(ar => !this.Team.players.find(rm => (rm.PLAYER_NAME === ar.PLAYER_NAME) ))
 
-      const result = this.playerList ? this.playerList.length : 520;
+    const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
       this.elements.push({
@@ -118,7 +118,13 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
       players: finalList as any,
     };
     // put this.newTeam here //
-    this._api.updateTeam(this.newTeam, this.id).subscribe(); 
-  };
+    this._api.updateTeam(this.newTeam, this.id).subscribe((res: any) => {
+      this.statusString = 'Team Successfully Edited!';
+      if (teamName == '') {
+        {
+          this.statusString = 'Team Cannot Be Empty!';
+        }
+      }
+    });
+  }
 }
-
