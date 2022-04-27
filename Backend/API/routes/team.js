@@ -27,4 +27,24 @@ router.post("/create", async (req, res) => {
     }
   });
 
+router.get("/view/:_id", async (req, res) => {
+  try { 
+    const viewTeam = await team.findById(req.params._id)
+    res.json (viewTeam)
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+router.put("/edit/:_id", async (req, res) =>  {
+  try {
+    const putTeam = await team.findByIdAndUpdate(req.params._id, {teamName: req.body.teamName,
+      players: req.body.players})
+    res.json (putTeam)
+  } catch (err) {
+    res.json({ message: err });
+
+  }
+});
+
 module.exports = router;
