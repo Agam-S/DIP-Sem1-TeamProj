@@ -11,6 +11,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
+import { ViewTeamComponent } from './components/view-team/view-team.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditTeamComponent } from './components/edit-team/edit-team.component';
     NavComponent,
     AllPlayersComponent,
     EditTeamComponent,
+    ViewTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,8 +30,8 @@ import { EditTeamComponent } from './components/edit-team/edit-team.component';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule,
-  ],
+    Ng2SearchPipeModule 
+   ],
   providers: [],
   bootstrap: [AppComponent],
 })

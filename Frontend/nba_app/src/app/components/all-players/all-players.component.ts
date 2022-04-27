@@ -39,7 +39,7 @@ export class AllPlayersComponent implements OnInit, AfterViewInit {
       .getAllPlayers()
       .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
 
-    const result = this.playerList ? this.playerList.length : 200;
+    const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
       this.elements.push({
