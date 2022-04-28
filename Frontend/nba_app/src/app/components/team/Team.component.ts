@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Team } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { findIndex, Subscription } from 'rxjs';
 import { ViewServiceService } from 'src/app/services/view-service.service';
 
 @Component({
@@ -15,6 +15,8 @@ export class TeamComponent implements OnInit, OnDestroy {
   idString: string;
   id: string;
   subscription: Subscription;
+  statusString: string;
+  deleteTeam: boolean;
 
   constructor(private _api: TeamServiceService, private data: ViewServiceService, private router: Router,) {}
 
@@ -41,5 +43,18 @@ export class TeamComponent implements OnInit, OnDestroy {
     this.idString = _id;
     this.data.changeMessage(this.idString);
     this.router.navigate(['/team/edit']);
+  }
+
+  removeTeam(_id: string) {
+    if (confirm("Are you sure you want to delete this Team?")) {
+        this._api.removeTeam(_id).subscribe((res: any) => {
+          alert("Team Deleted!");
+          let cUrl = this.router.url;
+          this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([cUrl]);
+        });
+
+      });
+    }
   }
 }

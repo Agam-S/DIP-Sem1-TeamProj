@@ -32,4 +32,10 @@ export class TeamServiceService {
     
     return this._http.put<ITeam>(url, newTeam);
   }
+
+  removeTeam( _id: string): Observable<ITeam> {
+    const url = this.baseUrl + "team/" + _id;
+
+    return this._http.delete<ITeam>(url);
+  }
 }
