@@ -47,5 +47,12 @@ router.put("/edit/:_id", async (req, res) =>  {
 
   }
 });
-
+router.delete("/:_id", async (req, res) => {
+  try {
+        const deleteTeam = await team.findByIdAndDelete(req.params._id);
+        res.json(deleteTeam);
+      } catch (err) {
+        res.json({ message: err });
+    } 
+  });
 module.exports = router;
