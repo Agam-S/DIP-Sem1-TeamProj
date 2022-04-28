@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ViewTeamComponent } from './components/view-team/view-team.component';
     AllPlayersComponent,
     EditTeamComponent,
     ViewTeamComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
