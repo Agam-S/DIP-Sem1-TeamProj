@@ -5,6 +5,14 @@ h1 {
 
 div,
 a {
-  margin: 10px;
+  margin: 4px;
   display: inline-block;
 }
+.empty {
+  text-align: center;
+  font-size: 1.5em;
+}
+.create-button {
+  margin: 10px;
+}
+

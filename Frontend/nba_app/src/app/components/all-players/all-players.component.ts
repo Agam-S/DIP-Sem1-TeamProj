@@ -35,23 +35,26 @@ export class AllPlayersComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.playerList = [];
     this._api
       .getAllPlayers()
-      .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
+      .subscribe((listPlayers) => {
+        for (let i = 0; i < listPlayers.length; i++) {
+          this.playerList.push(listPlayers[i]);
+        
+        }
 
-    const result = this.playerList ? this.playerList.length : 520;
-
-    for (let i = 1; i <= result; i++) {
-      this.elements.push({
-        RK: 'RK',
-        PLAYER_NAME: 'PLAYER_NAME',
-        PER: 'PER',
+        for (let i = 1; i <= this.playerList.length; i++) {
+          this.elements.push({
+            RK: 'RK',
+            PLAYER_NAME: 'PLAYER_NAME',
+            PER: 'PER',
+          });
+          this.mdbTable.setDataSource(this.elements);
+          this.elements = this.mdbTable.getDataSource();
+          this.previous = this.mdbTable.getDataSource();
+        }
       });
-    }
-
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
   }
 
   ngAfterViewInit() {

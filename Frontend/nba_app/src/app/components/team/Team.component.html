@@ -1,4 +1,7 @@
 <h1>Teams</h1>
+<button class="btn btn-success create-button" [routerLink]="['/create']"
+>Create a Team</button>
+<br /><br />
 <div
   class="card"
   style="width: 18rem"
@@ -9,14 +12,14 @@
   <div class="card-body">
     <h5 class="card-title">{{ t.teamName }}</h5>
 
-    <div class="container">
-      <button (click)="editTeam(t._id)" class="btn btn-primary">Edit</button>
+    <div class="buttons">
+      <button (click)="editTeam(t._id)" class="btn btn-primary btn-round">Edit</button>
 
-      <button (click)="viewTeam(t._id)" class="btn btn-info">View</button>
-      <button (click)="removeTeam(t._id)" class="btn btn-danger">Remove</button>
+      <button (click)="viewTeam(t._id)" class="btn btn-info btn-round">View</button>
+      <button (click)="removeTeam(t._id)" class="btn btn-danger btn-round">Remove</button>
     </div>
   </div>
 </div>
-<div *ngIf="this.teamsList == ''">
-  <h6 class="empty"><i>No Teams found...</i></h6>
+<div *ngIf="this.teamsList.length == 0">
+  <h6 style="font-size: 24px"><i>No Teams found...</i></h6>
 </div>

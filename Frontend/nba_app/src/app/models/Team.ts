@@ -1,9 +1,9 @@
 export class Team {
-    _id: number;
+    _id: string;
     teamName: string;
     players: [];
 
-    constructor(_teamName: string, _id: number, players: []) {
+    constructor(_teamName: string, _id: string, players: []) {
         this._id = _id;
         this.teamName = _teamName;
         this.players = players;

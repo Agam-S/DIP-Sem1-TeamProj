@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Team } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Router } from '@angular/router';
-import { findIndex, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ViewServiceService } from 'src/app/services/view-service.service';
 
 @Component({
@@ -11,19 +11,25 @@ import { ViewServiceService } from 'src/app/services/view-service.service';
   styleUrls: ['./team.component.css'],
 })
 export class TeamComponent implements OnInit, OnDestroy {
-  teamsList: any;
+  teamsList: Team[];
   idString: string;
   id: string;
   subscription: Subscription;
   statusString: string;
   deleteTeam: boolean;
 
+
   constructor(private _api: TeamServiceService, private data: ViewServiceService, private router: Router,) {}
 
   ngOnInit() {
+    this.teamsList=[];
     this._api
-      .getAllTeams()
-      .subscribe((unpackedTeams) => (this.teamsList = unpackedTeams));
+      .getAllTeams().subscribe((listPlayers) => {
+        for (let i = 0; i < listPlayers.length; i++) {
+          this.teamsList.push(listPlayers[i]);
+        }
+      });
+
 
       this.subscription = this.data.currentMessage.subscribe(
         (message) => (this.id = message)
@@ -46,7 +52,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   }
 
   removeTeam(_id: string) {
-    if (confirm("Are you sure you want to delete this Team?")) {
+    if (confirm("Are you sure you want to delete this Team?" )) {
         this._api.removeTeam(_id).subscribe((res: any) => {
           alert("Team Deleted!");
           let cUrl = this.router.url;
