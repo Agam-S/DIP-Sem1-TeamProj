@@ -69,16 +69,6 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
       this.Team = res;
     });
 
-    //   this.playerList.forEach(players => {
-    //     this.filerData.RK = players.RK;
-    //     this.filerData.PLAYER_NAME = players.PLAYER_NAME;
-    //     this.filerData.PER = players.PER;
-    //     this.filerList.push(this.filerData);
-    //  });
-    //   console.log("Coordinates list: " + this.filerList);
-
-    //     this.playerList = this.playerList.filter(ar => !this.Team.players.find(rm => (rm.PLAYER_NAME === ar.PLAYER_NAME) ))
-
     const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
