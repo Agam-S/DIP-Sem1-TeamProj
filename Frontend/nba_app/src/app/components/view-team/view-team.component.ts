@@ -31,6 +31,7 @@ export class ViewTeamComponent implements OnInit{
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER', 'teamName'];
   id: string;
+  idString: string;
   subscription: Subscription;
   Team: any;
 
@@ -60,5 +61,12 @@ export class ViewTeamComponent implements OnInit{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  editTeam(_id: string) {
+    this.idString = _id;
+    this.data.changeMessage(this.idString);
+    this.router.navigate(['/team/edit']);
+  }
+
 }
 

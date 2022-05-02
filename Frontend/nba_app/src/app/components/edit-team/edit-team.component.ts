@@ -39,6 +39,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   searchText;
 
   id: string;
+  idString: string;
   subscription: Subscription;
 
   @ViewChild('teamName') teamNameInp: ElementRef;
@@ -67,16 +68,6 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
     this.data.viewTeam(this.id).subscribe((res) => {
       this.Team = res;
     });
-
-    //   this.playerList.forEach(players => {
-    //     this.filerData.RK = players.RK;
-    //     this.filerData.PLAYER_NAME = players.PLAYER_NAME;
-    //     this.filerData.PER = players.PER;
-    //     this.filerList.push(this.filerData);
-    //  });
-    //   console.log("Coordinates list: " + this.filerList);
-
-    //     this.playerList = this.playerList.filter(ar => !this.Team.players.find(rm => (rm.PLAYER_NAME === ar.PLAYER_NAME) ))
 
     const result = this.playerList ? this.playerList.length : 520;
 
@@ -126,5 +117,10 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+  viewTeam(_id: string) {
+    this.idString = _id;
+    this.data.changeMessage(this.idString);
+    this.router.navigate(['/team/view']);
   }
 }
