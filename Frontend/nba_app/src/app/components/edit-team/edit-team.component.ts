@@ -39,6 +39,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   searchText;
 
   id: string;
+  idString: string;
   subscription: Subscription;
 
   @ViewChild('teamName') teamNameInp: ElementRef;
@@ -126,5 +127,10 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+  viewTeam(_id: string) {
+    this.idString = _id;
+    this.data.changeMessage(this.idString);
+    this.router.navigate(['/team/view']);
   }
 }
