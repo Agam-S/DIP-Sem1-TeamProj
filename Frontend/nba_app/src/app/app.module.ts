@@ -13,6 +13,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule 
-   ],
+    Ng2SearchPipeModule,
+    AlertModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -27,10 +27,17 @@ button {
   margin: 10px;
 }
 
-/* 
-.table-hover {
-  background-color: rgb(224, 103, 248);
+@media (max-width: 768px) {
+  #teamInp {
+    font-size: 21px;
+    width: 100%;
+  }
+  #playerSearchbar,
+  .alert {
+    width: 100%;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+  }
 }
-.table-hover1 {
-  background-color: rgb(0, 0, 0);
-} */

@@ -9,12 +9,13 @@
 
 </div> -->
 
-
+<br /><br />
 <div *ngIf="Team">
-  <h1> <strong>{{ Team.teamName }}</strong></h1>
+  <h1>
+    <strong>{{ Team.teamName }}</strong>
+  </h1>
 </div>
 <div class="container">
-
   <div>
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead>
@@ -39,8 +40,8 @@
       </tbody>
     </table>
   </div>
-<div class="container">
-  <button class="btn btn-danger" [routerLink]="['/teams']">Go Back</button>
-  <button class="btn btn-primary">Generate Win Percentage</button>
-</div>
+  <div class="container">
+    <button class="btn btn-danger" [routerLink]="['/teams']">Go Back</button>
+    <button class="btn btn-primary">Generate Win Percentage</button>
+  </div>
 </div>

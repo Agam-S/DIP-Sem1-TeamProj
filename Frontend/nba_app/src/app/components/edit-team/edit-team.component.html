@@ -1,14 +1,13 @@
 <div class="div">
   <h1>Edit Team</h1>
-  <div class="div" *ngIf="Team">
-    <input
-      class="form-control"
-      type="text"
-      id="teamInp"
-      #teamName
-      value="{{ Team.teamName }}"
-    />
-  </div>
+  <input
+    class="form-control div"
+    *ngIf="Team"
+    type="text"
+    id="teamInp"
+    #teamName
+    value="{{ Team.teamName }}"
+  />
 
   <div class="container">
     <div class="row">

@@ -38,7 +38,9 @@
         </tr>
       </thead>
       <tbody class="table-hover">
-        <tr *ngFor="let el of this.playerList | filter: searchText; let i = index">
+        <tr
+          *ngFor="let el of this.playerList | filter: searchText; let i = index"
+        >
           <td
             *ngIf="
               i + 1 >= mdbTablePagination.firstItemIndex &&
@@ -71,7 +73,7 @@
           <td colspan="4">
             <mdb-table-pagination
               [tableEl]="tableEl"
-              [searchDataSource]="this.elements" 
+              [searchDataSource]="this.elements"
             ></mdb-table-pagination>
           </td>
         </tr>

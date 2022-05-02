@@ -18,28 +18,29 @@ export class TeamComponent implements OnInit, OnDestroy {
   statusString: string;
   deleteTeam: boolean;
 
-
-  constructor(private _api: TeamServiceService, private data: ViewServiceService, private router: Router,) {}
+  constructor(
+    private _api: TeamServiceService,
+    private data: ViewServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.teamsList=[];
-    this._api
-      .getAllTeams().subscribe((listPlayers) => {
-        for (let i = 0; i < listPlayers.length; i++) {
-          this.teamsList.push(listPlayers[i]);
-        }
-      });
+    this.teamsList = [];
+    this._api.getAllTeams().subscribe((listPlayers) => {
+      for (let i = 0; i < listPlayers.length; i++) {
+        this.teamsList.push(listPlayers[i]);
+      }
+    });
 
-
-      this.subscription = this.data.currentMessage.subscribe(
-        (message) => (this.id = message)
-      );
-    }
+    this.subscription = this.data.currentMessage.subscribe(
+      (message) => (this.id = message)
+    );
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe;
   }
-  
+
   viewTeam(_id: string) {
     this.idString = _id;
     this.data.changeMessage(this.idString);
@@ -52,14 +53,15 @@ export class TeamComponent implements OnInit, OnDestroy {
   }
 
   removeTeam(_id: string) {
-    if (confirm("Are you sure you want to delete this Team?" )) {
-        this._api.removeTeam(_id).subscribe((res: any) => {
-          alert("Team Deleted!");
-          let cUrl = this.router.url;
-          this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    if (confirm('Are you sure you want to delete this Team?')) {
+      this._api.removeTeam(_id).subscribe((res: any) => {
+        alert('Team Deleted!');
+        let cUrl = this.router.url;
+        this.router
+          .navigateByUrl('/', { skipLocationChange: true })
+          .then(() => {
             this.router.navigate([cUrl]);
-        });
-
+          });
       });
     }
   }

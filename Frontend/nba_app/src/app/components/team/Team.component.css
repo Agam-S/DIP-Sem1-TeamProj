@@ -16,3 +16,11 @@ a {
   margin: 10px;
 }
 
+@media (max-width: 768px) {
+  div,
+  a {
+    margin: 8px;
+    text-align: center;
+    display: inline-block;
+  }
+}
