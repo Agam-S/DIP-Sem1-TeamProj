@@ -14,22 +14,24 @@ from sklearn.ensemble import RandomForestRegressor
 from skforecast.ForecasterAutoreg import ForecasterAutoreg
 
 
-def print_player_data():
+def print_player_data(playerList = [],*args):
     nba_data = pd.read_csv("CSV_2017-18_PER.csv", sep=",")
     dataList = []
+    dataFrame = []
    
+    for x in range(len(playerList)):
+        dataList.append(playerList[x])
 
-    player_names = input("Enter a list of player names: ")
-    player_names = player_names.split(",")
-    player_names = [name.lstrip() for name in player_names]
-    print(player_names)
+    # dataList = dataList.split(",")
+    # dataList = [name.lstrip() for name in dataList]
+    print(dataList)
     
-    for player in player_names:
+    for player in dataList:
         for index, row in nba_data.iterrows():
             if row["PLAYER_NAME"] == player:
-                dataList.append(row["PER"])
+                dataFrame.append(row["PER"])
                 
-    predictList = pd.Series(dataList)
+    predictList = pd.Series(dataFrame)
     df = pd.DataFrame({'PER':predictList.values})
     print(df)
 
@@ -53,7 +55,7 @@ def print_player_data():
 
     sumof = sum(finalList)
 
-    f = (sumof/len(player_names))
+    f = (sumof/len(dataList))
     fa = f * 0.10
     print(fa)
     fii = (sumof / 2)
@@ -63,5 +65,8 @@ def print_player_data():
     else:
         print(fii)
 
+# pass in a list of player names
 
-print_player_data()
+
+names = ['Delon Wright', 'Jalen Johnson', 'Sharife Cooper', 'Kevin Huerter', 'Skylar Mays', 'Kevin Knox', 'Lou Williams', 'Timothe Luwawu-Cabarrot', 'Danilo Gallinari', 'Gorgui Dieng', 'Trae Young', "De'Andre Hunter", 'Bogdan Bogdanovic', 'Clint Capela', 'Onyeka Okongwu', 'John Collins']
+print_player_data(names)
