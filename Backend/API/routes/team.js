@@ -2,9 +2,6 @@
 const router = require("express").Router();
 // Importing team model
 const team = require('../models/team');
-//
-const spawn = require('child_process').spawn;
-const ls = spawn('python', ['test1.py', 'arg1', 'arg2']);
 
 // Routes
 router.get('/all', async (req, res) => {
