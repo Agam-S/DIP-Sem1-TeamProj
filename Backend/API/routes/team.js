@@ -2,6 +2,9 @@
 const router = require("express").Router();
 // Importing team model
 const team = require('../models/team');
+//
+const spawn = require('child_process').spawn;
+const ls = spawn('python', ['test1.py', 'arg1', 'arg2']);
 
 // Routes
 router.get('/all', async (req, res) => {
@@ -13,7 +16,6 @@ router.get('/all', async (req, res) => {
         res.json({message: err})
     }
 });
-
 
 router.post("/create", async (req, res) => {
     try {
@@ -47,6 +49,7 @@ router.put("/edit/:_id", async (req, res) =>  {
 
   }
 });
+
 router.delete("/:_id", async (req, res) => {
   try {
         const deleteTeam = await team.findByIdAndDelete(req.params._id);
@@ -55,4 +58,6 @@ router.delete("/:_id", async (req, res) => {
         res.json({ message: err });
     } 
   });
+
+
 module.exports = router;
