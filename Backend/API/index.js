@@ -15,13 +15,9 @@ const player = require("./routes/player");
 const TeamRouter = require("./models/team");
 
 // MongoDB Connection
-mongoose.connect(
-  "mongodb+srv://admin:admin1234@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  { useNewUrlParser: true },
-  () => {
-    console.log("Connected to DB");
-  }
-);
+mongoose.connect(link, { useNewUrlParser: true }, () => {
+  console.log("Connected to DB");
+});
 
 // Middlewares
 app.use(cors());
@@ -44,7 +40,7 @@ app.get("/", (req, res) => {
   res.send({ message: "Welcome to the NBA API" });
 });
 
-app.get("/:_id", async (req, res) => {
+app.post("/alg/:_id", async (req, res) => {
   const foundTeam = await TeamRouter.findById(req.params._id);
   player_names = foundTeam.players.map((player) => {
     return player.PLAYER_NAME;
