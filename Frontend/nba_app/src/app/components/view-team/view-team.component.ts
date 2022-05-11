@@ -19,9 +19,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-team',
   templateUrl: './view-team.component.html',
-  styleUrls: ['./view-team.component.css']
+  styleUrls: ['./view-team.component.css'],
 })
-export class ViewTeamComponent implements OnInit{
+export class ViewTeamComponent implements OnInit {
   @ViewChild(MdbTablePaginationComponent, { static: true })
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
@@ -34,18 +34,19 @@ export class ViewTeamComponent implements OnInit{
   idString: string;
   subscription: Subscription;
   Team: any;
-
+  WinPercentage: any;
   searchText;
 
   constructor(
-    private data: ViewServiceService, private _api: TeamServiceService,  private router: Router,
+    private data: ViewServiceService,
+    private _api: TeamServiceService,
+    private router: Router,
     private cdRef: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.subscription = this.data.currentMessage.subscribe(
       (id) => (this.id = id)
-      
     );
 
     if (this.id == 'default message') {
@@ -55,7 +56,6 @@ export class ViewTeamComponent implements OnInit{
     this.data.viewTeam(this.id).subscribe((res) => {
       this.Team = res;
     });
-
   }
 
   ngOnDestroy() {
@@ -68,5 +68,15 @@ export class ViewTeamComponent implements OnInit{
     this.router.navigate(['/team/edit']);
   }
 
+  generateWinPercentage = async (_id: string) => {
+    try {
+      await this._api.generateWinPercentage(_id).subscribe((res) => {
+        this.WinPercentage = res;
+        this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
+        console.log(this.WinPercentage);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
-

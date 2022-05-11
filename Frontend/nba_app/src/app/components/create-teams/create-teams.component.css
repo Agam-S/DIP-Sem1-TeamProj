@@ -8,6 +8,10 @@ h1,
   font-size: 26px;
 }
 
+h1 {
+  padding: 10px;
+}
+
 #playerSearchbar {
   padding: 10px;
   margin: 10px;
