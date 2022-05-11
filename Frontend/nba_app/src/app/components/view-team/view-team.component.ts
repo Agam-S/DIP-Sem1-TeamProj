@@ -70,11 +70,15 @@ export class ViewTeamComponent implements OnInit {
 
   generateWinPercentage = async (_id: string) => {
     try {
-      await this._api.generateWinPercentage(_id).subscribe((res) => {
-        this.WinPercentage = res;
-        this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
-        console.log(this.WinPercentage);
-      });
+      if (this.Team.players.length < 5 || this.Team.players.length > 15) {
+        alert("Team should contain at least 5-15 players")
+      } else {
+        await this._api.generateWinPercentage(_id).subscribe((res) => {
+          this.WinPercentage = res;
+          this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
+          console.log(this.WinPercentage);
+        });
+      }
     } catch (error) {
       console.log(error);
     }
