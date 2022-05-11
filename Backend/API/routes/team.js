@@ -46,13 +46,14 @@ router.put("/edit/:_id", async (req, res) => {
     res.json({ message: err });
   }
 });
+
 router.delete("/:_id", async (req, res) => {
   try {
-    const deleteTeam = await team.findByIdAndDelete(req.params._id);
-    res.json(deleteTeam);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+        const deleteTeam = await team.findByIdAndDelete(req.params._id);
+        res.json(deleteTeam);
+      } catch (err) {
+        res.json({ message: err });
+    } 
+  });
 
 module.exports = router;
