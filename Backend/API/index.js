@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { spawn } = require("child_process");
 
 const app = express();
 require("dotenv").config();
@@ -9,6 +10,9 @@ require("dotenv").config();
 // Import Routes
 const team = require("./routes/team");
 const player = require("./routes/player");
+
+// Importing team model
+const TeamRouter = require("./models/team");
 
 // MongoDB Connection
 mongoose.connect(link, { useNewUrlParser: true }, () => {
@@ -34,4 +38,23 @@ const server = app.listen(process.env.PORT || 8080, () => {
 
 app.get("/", (req, res) => {
   res.send({ message: "Welcome to the NBA API" });
+});
+
+app.post("/alg/:_id", async (req, res) => {
+  const foundTeam = await TeamRouter.findById(req.params._id);
+  player_names = foundTeam.players.map((player) => {
+    return player.PLAYER_NAME;
+  });
+
+  const command = spawn("python3", ["./ml.py", player_names.toString()]);
+  let result;
+
+  command.stdout.on("data", function (data) {
+    result = data.toString();
+  });
+
+  command.on("close", function (error) {
+    console.log(error);
+    res.send(result);
+  });
 });
