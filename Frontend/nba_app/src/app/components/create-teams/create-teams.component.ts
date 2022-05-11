@@ -20,7 +20,9 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   statusString: string;
   @ViewChild('teamName') teamNameInp: ElementRef;
 
+  // rename to more descriptive
   elements: any = [];
+  // may not need this, investigate more
   previous: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
@@ -54,6 +56,8 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
     }
 
     this.mdbTable.setDataSource(this.elements);
+
+    // may not need this, investigate more
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
   }
@@ -87,6 +91,8 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   goBack() {
     this.router.navigate(['/teams']);
   }
+
+  // called like a c# property
   get result() {
     return this.playerList.filter((item) => item.CHECKED);
     
