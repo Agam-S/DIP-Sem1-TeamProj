@@ -26,8 +26,7 @@ export class ViewTeamComponent implements OnInit {
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  previous: any = [];
+  tContent: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER', 'teamName'];
   id: string;

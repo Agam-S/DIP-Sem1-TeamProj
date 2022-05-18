@@ -27,8 +27,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  previous: any = [];
+  tContent: any = [];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
   statusString: string;
   filerList: any;
@@ -72,16 +71,14 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
     const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
-      this.elements.push({
+      this.tContent.push({
         RK: 'RK',
         PLAYER_NAME: 'PLAYER_NAME',
         PER: 'PER',
       });
     }
 
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+    this.mdbTable.setDataSource(this.tContent);
   }
 
   ngAfterViewInit() {
