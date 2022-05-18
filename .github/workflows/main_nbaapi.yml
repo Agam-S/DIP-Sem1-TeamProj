@@ -21,17 +21,16 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: npm install, build
-        working-directory: ./Backend/API
+      - name: npm install
+        working-directory: ./Backend/API/*
         run: |
           npm install
-          npm run build --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ./Backend/API
+          path: ./Backend/API/*
 
   deploy:
     runs-on: windows-latest
