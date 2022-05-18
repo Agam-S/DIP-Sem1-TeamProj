@@ -3,7 +3,6 @@ import { Team } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ViewServiceService } from 'src/app/services/view-service.service';
 
 @Component({
   selector: 'app-team',
@@ -20,7 +19,7 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   constructor(
     private _api: TeamServiceService,
-    private data: ViewServiceService,
+    private data: TeamServiceService,
     private router: Router
   ) {}
 

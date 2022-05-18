@@ -13,7 +13,6 @@ import {
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Player } from 'src/app/models/Player';
 import { Subscription } from 'rxjs';
-import { ViewServiceService } from 'src/app/services/view-service.service';
 import { Router } from '@angular/router';
 import { ITeam } from 'src/app/models/Team';
 
@@ -47,7 +46,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   constructor(
     private _api: TeamServiceService,
     private cdRef: ChangeDetectorRef,
-    private data: ViewServiceService,
+    private data: TeamServiceService,
     private router: Router
   ) {}
 

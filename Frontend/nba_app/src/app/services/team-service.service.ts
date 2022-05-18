@@ -3,11 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ITeam, Team } from '../models/Team';
 import { Player } from '../models/Player';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeamServiceService {
+
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
+
   readonly baseUrl: string = 'https://nbaapi.azurewebsites.net/';
   readonly herokuUrl: string =
     'https://peaceful-shelf-37577.herokuapp.com/alg/';
@@ -43,5 +48,13 @@ export class TeamServiceService {
   generateWinPercentage(_id: string): Observable<Team> {
     const url = this.herokuUrl + _id;
     return this._http.post<Team>(url, _id);
+  }
+
+  viewTeam(_id: string): Observable<Team> {
+    const url = this.baseUrl + "team/view/" + _id;
+    return this._http.get<Team>(url);
+  }
+  changeMessage(id: string) {
+    this.messageSource.next(id);
   }
 }
