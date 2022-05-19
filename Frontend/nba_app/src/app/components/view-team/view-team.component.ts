@@ -76,6 +76,9 @@ export class ViewTeamComponent implements OnInit {
         await this._api.generateWinPercentage(_id).subscribe((res) => {
           this.WinPercentage = res;
           this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
+          if (this.WinPercentage > 80) {
+            this.WinPercentage = (this.WinPercentage / 2)
+          }
           console.log(this.WinPercentage);
         });
       }
