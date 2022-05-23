@@ -27,10 +27,7 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   statusString: string;
   @ViewChild('teamName') teamNameInp: ElementRef;
 
-  // rename to more descriptive
-  elements: any = [];
-  // may not need this, investigate more
-  previous: any = [];
+  tContent: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
 
@@ -53,18 +50,14 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
     const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
-      this.elements.push({
+      this.tContent.push({
         RK: 'RK',
         PLAYER_NAME: 'PLAYER_NAME',
         PER: 'PER',
       });
     }
 
-    this.mdbTable.setDataSource(this.elements);
-
-    // may not need this, investigate more
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+    this.mdbTable.setDataSource(this.tContent);
   }
 
   ngAfterViewInit() {

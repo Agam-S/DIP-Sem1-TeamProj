@@ -13,7 +13,6 @@ import {
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Player } from 'src/app/models/Player';
 import { Subscription } from 'rxjs';
-import { ViewServiceService } from 'src/app/services/view-service.service';
 import { Router } from '@angular/router';
 import { ITeam } from 'src/app/models/Team';
 
@@ -27,8 +26,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  previous: any = [];
+  tContent: any = [];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
   statusString: string;
   filerList: any;
@@ -48,7 +46,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   constructor(
     private _api: TeamServiceService,
     private cdRef: ChangeDetectorRef,
-    private data: ViewServiceService,
+    private data: TeamServiceService,
     private router: Router
   ) {}
 
@@ -72,16 +70,14 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
     const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
-      this.elements.push({
+      this.tContent.push({
         RK: 'RK',
         PLAYER_NAME: 'PLAYER_NAME',
         PER: 'PER',
       });
     }
 
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+    this.mdbTable.setDataSource(this.tContent);
   }
 
   ngAfterViewInit() {

@@ -6,13 +6,10 @@ import {
   Component,
   OnInit,
   ViewChild,
-  AfterViewInit,
   ChangeDetectorRef,
 } from '@angular/core';
 import { Player } from 'src/app/models/Player';
 import { TeamServiceService } from 'src/app/services/team-service.service';
-import { Team } from 'src/app/models/Team';
-import { ViewServiceService } from 'src/app/services/view-service.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -26,8 +23,7 @@ export class ViewTeamComponent implements OnInit {
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  previous: any = [];
+  tContent: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER', 'teamName'];
   id: string;
@@ -38,7 +34,7 @@ export class ViewTeamComponent implements OnInit {
   searchText;
 
   constructor(
-    private data: ViewServiceService,
+    private data: TeamServiceService,
     private _api: TeamServiceService,
     private router: Router,
     private cdRef: ChangeDetectorRef
@@ -76,6 +72,9 @@ export class ViewTeamComponent implements OnInit {
         await this._api.generateWinPercentage(_id).subscribe((res) => {
           this.WinPercentage = res;
           this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
+          if (this.WinPercentage > 80) {
+            this.WinPercentage = (this.WinPercentage / 2)
+          }
           console.log(this.WinPercentage);
         });
       }
