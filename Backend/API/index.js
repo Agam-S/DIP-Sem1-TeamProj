@@ -15,9 +15,13 @@ const player = require("./routes/player");
 const teamModel = require("./models/team");
 
 // MongoDB Connection
-mongoose.connect(link, { useNewUrlParser: true }, () => {
-  console.log("Connected to DB");
-});
+mongoose.connect(
+  "mongodb+srv://admin:admin1234@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  { useNewUrlParser: true },
+  () => {
+    console.log("Connected to DB");
+  }
+);
 
 // Middlewares
 app.use(cors());
@@ -56,6 +60,6 @@ app.post("/alg/:_id", async (req, res) => {
 
   command.on("close", function (error) {
     console.log(error);
-    res.send({ team:foundTeam, winRateP:result});
+    res.send({ team: foundTeam, winRateP: Number(result) });
   });
 });
