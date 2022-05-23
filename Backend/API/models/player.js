@@ -7,8 +7,6 @@ const playerSchema = new mongoose.Schema({
     GP: Number,
     PTS: Number,
     PER: Number,
-
-
 });
 
 module.exports = mongoose.model('players', playerSchema);

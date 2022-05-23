@@ -1,4 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ITeam } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
@@ -20,13 +27,9 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   statusString: string;
   @ViewChild('teamName') teamNameInp: ElementRef;
 
-  // rename to more descriptive
-  elements: any = [];
-  // may not need this, investigate more
-  previous: any = [];
+  tContent: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
-  
 
   SelectedPlayers = [];
 
@@ -34,32 +37,27 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   newTeam: ITeam;
 
   constructor(
-    private _api: TeamServiceService, 
+    private _api: TeamServiceService,
     private router: Router,
-    private cdRef: ChangeDetectorRef,
-    ) {}
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this._api
       .getAllPlayers()
       .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
-      
 
     const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
-      this.elements.push({
+      this.tContent.push({
         RK: 'RK',
         PLAYER_NAME: 'PLAYER_NAME',
         PER: 'PER',
       });
     }
 
-    this.mdbTable.setDataSource(this.elements);
-
-    // may not need this, investigate more
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+    this.mdbTable.setDataSource(this.tContent);
   }
 
   ngAfterViewInit() {
@@ -75,7 +73,6 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
     this.newTeam = {
       teamName: teamName,
       players: this.result as any,
-      
     };
 
     this._api.postTeam(this.newTeam).subscribe((res: any) => {
@@ -95,7 +92,5 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   // called like a c# property
   get result() {
     return this.playerList.filter((item) => item.CHECKED);
-    
   }
-  
 }

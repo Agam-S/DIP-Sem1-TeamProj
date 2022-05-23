@@ -22,8 +22,7 @@ export class AllPlayersComponent implements OnInit, AfterViewInit {
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  previous: any = [];
+  tContent: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
 
@@ -36,23 +35,18 @@ export class AllPlayersComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.playerList = [];
-    this._api
-      .getAllPlayers()
-      .subscribe((listPlayers) => {
-        for (let i = 0; i < listPlayers.length; i++) {
-          this.playerList.push(listPlayers[i]);
-        
-        }
+    this._api.getAllPlayers().subscribe((listPlayers) => {
+      for (let i = 0; i < listPlayers.length; i++) {
+        this.playerList.push(listPlayers[i]);
+      }
 
         for (let i = 1; i <= this.playerList.length; i++) {
-          this.elements.push({
+          this.tContent.push({
             RK: 'RK',
             PLAYER_NAME: 'PLAYER_NAME',
             PER: 'PER',
           });
-          this.mdbTable.setDataSource(this.elements);
-          this.elements = this.mdbTable.getDataSource();
-          this.previous = this.mdbTable.getDataSource();
+          this.mdbTable.setDataSource(this.tContent);
         }
       });
   }
