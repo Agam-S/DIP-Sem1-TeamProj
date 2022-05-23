@@ -16,7 +16,7 @@ const teamModel = require("./models/team");
 
 // MongoDB Connection
 mongoose.connect(
-  "mongodb+srv://admin:admin1234@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  link,
   { useNewUrlParser: true },
   () => {
     console.log("Connected to DB");
