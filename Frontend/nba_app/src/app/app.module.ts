@@ -14,6 +14,7 @@ import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     EditTeamComponent,
     ViewTeamComponent,
     NotFoundComponent,
+    CompareTeamsComponent,
   ],
   imports: [
     BrowserModule,

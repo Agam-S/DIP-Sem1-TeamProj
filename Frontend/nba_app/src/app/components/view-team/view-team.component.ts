@@ -2,12 +2,7 @@ import {
   MdbTablePaginationComponent,
   MdbTableDirective,
 } from 'angular-bootstrap-md';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Player } from 'src/app/models/Player';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Subscription } from 'rxjs';
@@ -67,13 +62,13 @@ export class ViewTeamComponent implements OnInit {
   generateWinPercentage = async (_id: string) => {
     try {
       if (this.Team.players.length < 5 || this.Team.players.length > 15) {
-        alert("Team should contain at least 5-15 players")
+        alert('Team should contain at least 5-15 players');
       } else {
         await this._api.generateWinPercentage(_id).subscribe((res) => {
           this.WinPercentage = res;
           this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
           if (this.WinPercentage > 80) {
-            this.WinPercentage = (this.WinPercentage / 2)
+            this.WinPercentage = this.WinPercentage / 2;
           }
           console.log(this.WinPercentage);
         });

@@ -9,9 +9,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class TeamServiceService {
-
   private messageSource = new BehaviorSubject('default message');
+  private listSource = new BehaviorSubject(null);
+
   currentMessage = this.messageSource.asObservable();
+  sharedList = this.listSource.asObservable();
 
   readonly baseUrl: string = 'https://nbaapi.azurewebsites.net/';
   readonly herokuUrl: string =
@@ -30,19 +32,16 @@ export class TeamServiceService {
 
   getAllPlayers(): Observable<Player[]> {
     const url = this.baseUrl + 'players';
-
     return this._http.get<Player[]>(url);
   }
 
   updateTeam(newTeam: ITeam, _id: string): Observable<ITeam> {
     const url = this.baseUrl + 'team/edit/' + _id;
-
     return this._http.put<ITeam>(url, newTeam);
   }
 
   removeTeam(_id: string): Observable<ITeam> {
     const url = this.baseUrl + 'team/' + _id;
-
     return this._http.delete<ITeam>(url);
   }
   generateWinPercentage(_id: string): Observable<Team> {
@@ -51,10 +50,13 @@ export class TeamServiceService {
   }
 
   viewTeam(_id: string): Observable<Team> {
-    const url = this.baseUrl + "team/view/" + _id;
+    const url = this.baseUrl + 'team/view/' + _id;
     return this._http.get<Team>(url);
   }
   changeMessage(id: string) {
     this.messageSource.next(id);
+  }
+  changeList(ids: any[]) {
+    this.listSource.next(ids);
   }
 }

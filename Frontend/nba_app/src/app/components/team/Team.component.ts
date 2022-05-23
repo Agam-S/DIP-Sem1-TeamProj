@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Team } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,12 @@ import { Subscription } from 'rxjs';
 })
 export class TeamComponent implements OnInit, OnDestroy {
   teamsList: Team[];
-  idString: string;
+  idString: any;
   id: string;
   subscription: Subscription;
   statusString: string;
   deleteTeam: boolean;
+  compareIds: string[] = [];
 
   constructor(
     private _api: TeamServiceService,
@@ -51,6 +52,23 @@ export class TeamComponent implements OnInit, OnDestroy {
     this.router.navigate(['/team/edit']);
   }
 
+  getIDs(_id: string) {
+    if (this.compareIds.includes(_id)) {
+      this.compareIds.splice(this.compareIds.indexOf(_id), 1);
+    } else {
+      this.compareIds.push(_id);
+    }
+  }
+  compareTeam() {
+    if (this.compareIds.length < 2) {
+      alert('You can only compare TWO teams at a time');
+    } else if (this.compareIds.length === 0) {
+      alert('Please select a team to compare');
+    } else {
+      this.data.changeList(this.compareIds);
+      this.router.navigate(['/team/compare']);
+    }
+  }
   removeTeam(_id: string) {
     if (confirm('Are you sure you want to delete this Team?')) {
       this._api.removeTeam(_id).subscribe((res: any) => {
