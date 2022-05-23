@@ -56,6 +56,6 @@ app.post("/alg/:_id", async (req, res) => {
 
   command.on("close", function (error) {
     console.log(error);
-    res.send(result);
+    res.send({ team:foundTeam, winRateP:result});
   });
 });
