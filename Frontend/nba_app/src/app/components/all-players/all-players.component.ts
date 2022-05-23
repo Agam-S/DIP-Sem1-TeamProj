@@ -35,13 +35,10 @@ export class AllPlayersComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.playerList = [];
-    this._api
-      .getAllPlayers()
-      .subscribe((listPlayers) => {
-        for (let i = 0; i < listPlayers.length; i++) {
-          this.playerList.push(listPlayers[i]);
-        
-        }
+    this._api.getAllPlayers().subscribe((listPlayers) => {
+      for (let i = 0; i < listPlayers.length; i++) {
+        this.playerList.push(listPlayers[i]);
+      }
 
         for (let i = 1; i <= this.playerList.length; i++) {
           this.tContent.push({

@@ -1,4 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ITeam } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
@@ -23,7 +30,6 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   tContent: any = [];
   playerList: Player[];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
-  
 
   SelectedPlayers = [];
 
@@ -31,16 +37,15 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   newTeam: ITeam;
 
   constructor(
-    private _api: TeamServiceService, 
+    private _api: TeamServiceService,
     private router: Router,
-    private cdRef: ChangeDetectorRef,
-    ) {}
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this._api
       .getAllPlayers()
       .subscribe((unpackedPlayers) => (this.playerList = unpackedPlayers));
-      
 
     const result = this.playerList ? this.playerList.length : 520;
 
@@ -68,7 +73,6 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
     this.newTeam = {
       teamName: teamName,
       players: this.result as any,
-      
     };
 
     this._api.postTeam(this.newTeam).subscribe((res: any) => {
@@ -88,7 +92,5 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   // called like a c# property
   get result() {
     return this.playerList.filter((item) => item.CHECKED);
-    
   }
-  
 }

@@ -4,15 +4,12 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
+  constructor(private titleService: Title) {}
 
-  constructor(private titleService: Title) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   openNav() {
     document.getElementById('myNav').style.height = '100%';
@@ -21,5 +18,4 @@ export class NavComponent implements OnInit {
   closeNav() {
     document.getElementById('myNav').style.height = '0%';
   }
-
 }
