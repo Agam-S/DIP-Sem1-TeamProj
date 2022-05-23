@@ -19,8 +19,9 @@ nba_data = pd.read_csv("CSV_2017-18_PER.csv", sep=",")
 dataFrame = []
 playerList = sys.argv[1]
 
-playerList = playerList.split(",")
 
+playerList = playerList.split(",")
+listLength = len(playerList)
 
 playerList = [name.lstrip() for name in playerList]
     
@@ -41,16 +42,16 @@ forecaster = ForecasterAutoreg (
 forecaster.fit(y=df['PER'])
 forecaster
 
-steps = 12
+steps = listLength
     
 predictions = forecaster.predict(steps=steps)
-predictions[0:12]  
+predictions[0:listLength]  
     
 finalList = predictions.tolist()
 
 sumof = sum(finalList)
 
-f = (sumof/len(playerList))
+f = (sumof/listLength)
 fa = f * 0.10
 fii = (sumof / 2)
 
@@ -58,8 +59,6 @@ if fii > 80:
     print(fii / 2)
 else:
     print(fii)
-
-
 
 
 
