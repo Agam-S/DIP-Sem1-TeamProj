@@ -14,7 +14,12 @@
 >
   <img class="card-img-top" />
   <div class="card-body">
-    <input type="checkbox" [checked]="false" (click)="getIDs(t._id)" />
+    <input
+      class="check"
+      type="checkbox"
+      [checked]="false"
+      (click)="getIDs(t._id)"
+    />
     <h5 class="card-title">{{ t.teamName }}</h5>
 
     <div class="buttons">

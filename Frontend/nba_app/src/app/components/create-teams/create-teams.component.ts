@@ -32,7 +32,6 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
 
   SelectedPlayers = [];
-
   searchText;
   newTeam: ITeam;
 
@@ -68,6 +67,10 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   }
 
   postNewTeam() {
+    if (this.playerList.length < 5 || this.playerList.length > 15) {
+      this.statusString = 'Please select 5-15 players';
+      return;
+    }
     let teamName = this.teamNameInp.nativeElement.value;
 
     this.newTeam = {

@@ -1,22 +1,73 @@
 <div *ngIf="team1">
-  <h1>
-    {{ team1.team.teamName }}
-  </h1>
+  <h1>Team 1 : {{ team1.team.teamName }}</h1>
 </div>
-
+<div *ngIf="this.team1">
+  <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">PER</th>
+      </tr>
+    </thead>
+    <tbody class="table-hover">
+      <tr *ngFor="let el of this.team1.team.players">
+        <td>
+          {{ el.PLAYER_NAME }}
+        </td>
+        <td>
+          {{ el.PER }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br />
+<div class="inline" *ngIf="this.win1 && this.team2">
+  <h3>Win Percentage for {{ this.team1.team.teamName }}: {{ this.win1 }} %</h3>
+</div>
+<br />
+<hr />
 <div *ngIf="team2">
-  <h1>
-    {{ team2.team.teamName }}
-  </h1>
+  <h1>Team 2: {{ team2.team.teamName }}</h1>
 </div>
 
-<div *ngIf="this.win1">
-  <h1>
-    {{ this.win1 }}
-  </h1>
+<div *ngIf="this.team1">
+  <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">PER</th>
+      </tr>
+    </thead>
+    <tbody class="table-hover">
+      <tr *ngFor="let el of this.team2.team.players">
+        <td>
+          {{ el.PLAYER_NAME }}
+        </td>
+        <td>
+          {{ el.PER }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div *ngIf="this.win2">
-  <h1>
-    {{ this.win2 }}
-  </h1>
+
+<br />
+<div class="inline" *ngIf="this.win2 && this.team2">
+  <h3>Win Percentage for {{ this.team2.team.teamName }}: {{ this.win2 }} %</h3>
+</div>
+<br />
+<hr />
+<div *ngIf="this.resultString">
+  <h2>
+    {{ this.resultString }}
+  </h2>
+</div>
+<div class="container">
+  <h6>
+    <i>
+      Depending on the internet speed, It may take 5 seconds to 1 min to get Win
+      Percentage</i
+    >
+  </h6>
 </div>

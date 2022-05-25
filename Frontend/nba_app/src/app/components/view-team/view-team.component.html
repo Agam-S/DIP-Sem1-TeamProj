@@ -40,26 +40,12 @@
       </tbody>
     </table>
   </div>
-  <br /><br />
-  <div class="container">
-    <h6>
-      <i>
-        Depending on the internet speed, It may take 5 seconds to 1 min to get
-        Win Percentage</i
-      >
-    </h6>
-  </div>
   <br />
+
   <div class="container">
     <button class="btn btn-danger" [routerLink]="['/teams']">Go Back</button>
     <button (click)="editTeam(Team._id)" class="btn btn-primary btn-round">
       Edit
     </button>
-    <button class="btn btn-dark" (click)="generateWinPercentage(Team._id)">
-      Generate Win Percentage
-    </button>
-  </div>
-  <div class="win" *ngIf="this.WinPercentage">
-    <h1 class="winText">{{ this.WinPercentage }} %</h1>
   </div>
 </div>

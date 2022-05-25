@@ -1,0 +1,10 @@
+.container {
+  text-align: center;
+}
+.inline {
+  display: inline;
+}
+h1,
+h3 {
+  text-align: center;
+}

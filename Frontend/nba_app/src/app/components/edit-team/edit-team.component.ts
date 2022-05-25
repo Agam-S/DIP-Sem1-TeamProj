@@ -98,6 +98,11 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   }
   putEditTeam() {
     const finalList = this.reresult.concat(this.result);
+
+    if (finalList.length < 5 || finalList.length > 15) {
+      this.statusString = 'Please select 5-15 players';
+      return;
+    }
     let teamName = this.teamNameInp.nativeElement.value;
 
     this.newTeam = {

@@ -15,6 +15,10 @@ a {
 .create-button {
   margin: 10px;
 }
+input.check {
+  height: 20px;
+  width: 20px;
+}
 
 @media (max-width: 768px) {
   div,

@@ -60,7 +60,7 @@ export class TeamComponent implements OnInit, OnDestroy {
     }
   }
   compareTeam() {
-    if (this.compareIds.length < 2) {
+    if (this.compareIds.length < 2 || this.compareIds.length > 2) {
       alert('You can only compare TWO teams at a time');
     } else if (this.compareIds.length === 0) {
       alert('Please select a team to compare');

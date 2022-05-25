@@ -25,7 +25,6 @@ export class ViewTeamComponent implements OnInit {
   idString: string;
   subscription: Subscription;
   Team: any;
-  WinPercentage: any;
   searchText;
 
   constructor(
@@ -58,23 +57,4 @@ export class ViewTeamComponent implements OnInit {
     this.data.changeMessage(this.idString);
     this.router.navigate(['/team/edit']);
   }
-
-  generateWinPercentage = async (_id: string) => {
-    try {
-      if (this.Team.players.length < 5 || this.Team.players.length > 15) {
-        alert('Team should contain at least 5-15 players');
-      } else {
-        await this._api.generateWinPercentage(_id).subscribe((res) => {
-          this.WinPercentage = res;
-          this.WinPercentage = Math.round(this.WinPercentage * 100) / 100;
-          if (this.WinPercentage > 80) {
-            this.WinPercentage = this.WinPercentage / 2;
-          }
-          console.log(this.WinPercentage);
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 }
