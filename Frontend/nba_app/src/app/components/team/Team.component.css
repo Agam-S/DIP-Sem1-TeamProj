@@ -16,8 +16,12 @@ a {
   margin: 10px;
 }
 input.check {
-  height: 20px;
-  width: 20px;
+  height: 35px !important;
+  width: 35px !important;
+  position: absolute !important;
+  top: 6px !important;
+  right: 0 !important;
+  filter: invert(100%) hue-rotate(18deg) brightness(1.4) !important;
 }
 
 @media (max-width: 768px) {

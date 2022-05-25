@@ -64,14 +64,14 @@ export class CompareTeamsComponent implements OnInit, OnDestroy {
           this.team1.team.teamName +
           ' has a ' +
           (this.win1 + this.win2) / 100 +
-          ' % win chance than ' +
+          ' % greater win chance than ' +
           this.team2.team.teamName;
       } else if (this.win1 < this.win2) {
         this.resultString =
           this.team2.team.teamName +
           ' has a ' +
           (this.win2 + this.win1) / 100 +
-          ' % win chance than ' +
+          ' % greater win chance than ' +
           this.team1.team.teamName;
       } else {
         this.resultString =
