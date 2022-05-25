@@ -24,7 +24,7 @@ export class CompareTeamsComponent implements OnInit, OnDestroy {
   win1: number = 0;
   win2: number = 0;
   resultString: string;
-
+  totalWin: number = 0;
   constructor(
     private data: TeamServiceService,
     private _api: TeamServiceService,
@@ -59,18 +59,20 @@ export class CompareTeamsComponent implements OnInit, OnDestroy {
   }
   showResult() {
     setTimeout(() => {
+      this.totalWin = this.win1 + this.win2;
+
       if (this.win1 > this.win2) {
         this.resultString =
           this.team1.team.teamName +
           ' has a ' +
-          (this.win1 + this.win2) / 100 +
+          Number((this.win1 / this.totalWin) * 100).toLocaleString() +
           ' % greater win chance than ' +
           this.team2.team.teamName;
       } else if (this.win1 < this.win2) {
         this.resultString =
           this.team2.team.teamName +
           ' has a ' +
-          (this.win2 + this.win1) / 100 +
+          Number((this.win2 / this.totalWin) * 100).toLocaleString() +
           ' % greater win chance than ' +
           this.team1.team.teamName;
       } else {
@@ -80,7 +82,7 @@ export class CompareTeamsComponent implements OnInit, OnDestroy {
           this.team2.team.teamName +
           ' have the same win chance';
       }
-    }, 7500);
+    }, 10000);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

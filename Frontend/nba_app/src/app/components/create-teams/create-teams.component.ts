@@ -67,25 +67,25 @@ export class CreateTeamsComponent implements OnInit, AfterViewInit {
   }
 
   postNewTeam() {
-    if (this.playerList.length < 5 || this.playerList.length > 15) {
-      this.statusString = 'Please select 5-15 players';
-      return;
-    }
     let teamName = this.teamNameInp.nativeElement.value;
 
     this.newTeam = {
       teamName: teamName,
       players: this.result as any,
     };
+    if (this.result.length < 5 || this.result.length > 15) {
+      this.statusString = 'Please select 5-15 players';
+    } else {
+      this._api.postTeam(this.newTeam).subscribe((res: any) => {
+        this.statusString = 'Team Successfully Added!';
 
-    this._api.postTeam(this.newTeam).subscribe((res: any) => {
-      this.statusString = 'Team Successfully Added!';
-      if (teamName == '') {
-        {
-          this.statusString = 'Team Cannot Be Empty!';
+        if (teamName == '') {
+          {
+            this.statusString = 'Team Cannot Be Empty!';
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   goBack() {
