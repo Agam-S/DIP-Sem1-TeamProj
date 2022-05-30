@@ -27,6 +27,7 @@ button {
   transition-duration: 0.4s;
   cursor: pointer;
   margin: 10px;
+  font-weight: bold;
 }
 @media (max-width: 768px) {
   #teamInp {
