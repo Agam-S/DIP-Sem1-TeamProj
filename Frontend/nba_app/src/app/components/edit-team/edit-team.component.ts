@@ -13,7 +13,6 @@ import {
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Player } from 'src/app/models/Player';
 import { Subscription } from 'rxjs';
-import { ViewServiceService } from 'src/app/services/view-service.service';
 import { Router } from '@angular/router';
 import { ITeam } from 'src/app/models/Team';
 
@@ -27,8 +26,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
 
-  elements: any = [];
-  previous: any = [];
+  tContent: any = [];
   headElements = ['RK', 'PLAYER_NAME', 'PER'];
   statusString: string;
   filerList: any;
@@ -39,6 +37,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   searchText;
 
   id: string;
+  idString: string;
   subscription: Subscription;
 
   @ViewChild('teamName') teamNameInp: ElementRef;
@@ -47,7 +46,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   constructor(
     private _api: TeamServiceService,
     private cdRef: ChangeDetectorRef,
-    private data: ViewServiceService,
+    private data: TeamServiceService,
     private router: Router
   ) {}
 
@@ -68,29 +67,17 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
       this.Team = res;
     });
 
-    //   this.playerList.forEach(players => {
-    //     this.filerData.RK = players.RK;
-    //     this.filerData.PLAYER_NAME = players.PLAYER_NAME;
-    //     this.filerData.PER = players.PER;
-    //     this.filerList.push(this.filerData);
-    //  });
-    //   console.log("Coordinates list: " + this.filerList);
-
-    //     this.playerList = this.playerList.filter(ar => !this.Team.players.find(rm => (rm.PLAYER_NAME === ar.PLAYER_NAME) ))
-
     const result = this.playerList ? this.playerList.length : 520;
 
     for (let i = 1; i <= result; i++) {
-      this.elements.push({
+      this.tContent.push({
         RK: 'RK',
         PLAYER_NAME: 'PLAYER_NAME',
         PER: 'PER',
       });
     }
 
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+    this.mdbTable.setDataSource(this.tContent);
   }
 
   ngAfterViewInit() {
@@ -111,6 +98,11 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   }
   putEditTeam() {
     const finalList = this.reresult.concat(this.result);
+
+    if (finalList.length > 5 && finalList.length < 15) {
+      this.statusString = 'Please select 5-15 players';
+      return;
+    }
     let teamName = this.teamNameInp.nativeElement.value;
 
     this.newTeam = {
@@ -126,5 +118,10 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+  viewTeam(_id: string) {
+    this.idString = _id;
+    this.data.changeMessage(this.idString);
+    this.router.navigate(['/team/view']);
   }
 }

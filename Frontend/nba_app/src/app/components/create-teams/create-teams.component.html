@@ -7,7 +7,6 @@
     #teamName
     placeholder="Team Name"
   />
-
   <div class="container">
     <div class="row">
       <div class="search-player">
@@ -33,7 +32,9 @@
           </tr>
         </thead>
         <tbody class="table-hover">
-          <tr *ngFor="let item of playerList | filter: searchText; let i = index">
+          <tr
+            *ngFor="let item of playerList | filter: searchText; let i = index"
+          >
             <td
               *ngIf="
                 i + 1 >= mdbTablePagination.firstItemIndex &&
@@ -60,14 +61,13 @@
               {{ item.PER }}
             </td>
             <td
-            *ngIf="
-              i + 1 >= mdbTablePagination.firstItemIndex &&
-              i < mdbTablePagination.lastItemIndex
-            "
-          >
-          <input type="checkbox" [(ngModel)]="item.CHECKED">
-        
-          </td>
+              *ngIf="
+                i + 1 >= mdbTablePagination.firstItemIndex &&
+                i < mdbTablePagination.lastItemIndex
+              "
+            >
+              <input type="checkbox" [(ngModel)]="item.CHECKED" />
+            </td>
           </tr>
         </tbody>
         <tfoot class="grey lighten-5 w-100">
@@ -75,7 +75,7 @@
             <td colspan="4">
               <mdb-table-pagination
                 [tableEl]="tableEl"
-                [searchDataSource]="elements"
+                [searchDataSource]="tContent"
               ></mdb-table-pagination>
             </td>
           </tr>
@@ -100,5 +100,4 @@
   <button class="btn btn-danger" id="enterTeamBtn" (click)="postNewTeam()">
     Enter
   </button>
-
 </div>

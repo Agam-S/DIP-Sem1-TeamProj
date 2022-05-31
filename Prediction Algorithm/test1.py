@@ -1,59 +1,73 @@
-# imports 
-
+from os import name
 import numpy as np
 import pandas as pd
+
 
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 plt.rcParams['lines.linewidth'] = 1.5
 
-
-
 import warnings
 warnings.filterwarnings('ignore')
 
-from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import Lasso
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import make_pipeline
 
 from skforecast.ForecasterAutoreg import ForecasterAutoreg
-from skforecast.ForecasterAutoregCustom import ForecasterAutoregCustom
-from skforecast.ForecasterAutoregMultiOutput import ForecasterAutoregMultiOutput
-from skforecast.model_selection import grid_search_forecaster
-from skforecast.model_selection import backtesting_forecaster
 
-from joblib import dump, load
 
-# data
-nba_data = pd.read_csv("csv_data.csv", sep=",")
+def print_player_data(playerList = [],*args):
+    nba_data = pd.read_csv("CSV_2017-18_PER.csv", sep=",")
+    dataList = []
+    dataFrame = []
+   
+    for x in range(len(playerList)):
+        dataList.append(playerList[x])
 
-print(nba_data.shape)
-# temp_data = nba_data[["TEAM_ABBREVIATION", "W/R percentage"]]
-# temp_data.head(10)
+    # dataList = dataList.split(",")
+    # dataList = [name.lstrip() for name in dataList]
+    print(dataList)
+    
+    for player in dataList:
+        for index, row in nba_data.iterrows():
+            if row["PLAYER_NAME"] == player:
+                dataFrame.append(row["PER"])
+                
+    predictList = pd.Series(dataFrame)
+    df = pd.DataFrame({'PER':predictList.values})
+    print(df)
 
-data = nba_data.set_index('TEAM_ABBREVIATION')
-data = nba_data.rename(columns={'x': 'y'})
-data = nba_data.asfreq('MS')
-data = nba_data.sort_index()
-data.head()
+    
+    forecaster = ForecasterAutoreg (
+            regressor = RandomForestRegressor(random_state=123),
+            lags = 1
+        )
 
-steps = 12
-data_train = nba_data[:-steps]
-data_test  = nba_data[-steps:]
+    forecaster.fit(y=df['PER'])
+    forecaster
 
-fig, ax=plt.subplots(figsize=(9, 4))
-data_train['GP'].plot(ax=ax, label='train')
-data_test['GP'].plot(ax=ax, label='test')
-ax.legend();
+    
+    steps = 12
+    
+    predictions = forecaster.predict(steps=steps)
+    predictions[0:12]  
+    print(predictions)    
+    
+    finalList = predictions.tolist()
 
-# forecaster = ForecasterAutoreg(
-#                 regressor = RandomForestRegressor(random_state=123),
-#                 lags = 6
-#              )
+    sumof = sum(finalList)
 
-# forecaster.fit(y=data_train['GP'])
+    f = (sumof/len(dataList))
+    fa = f * 0.10
+    print(fa)
+    fii = (sumof / 2)
 
-# forecaster
+    if fii > 80:
+        print(fii / 2)
+    else:
+        print(fii)
+
+# pass in a list of player names
+
+
+names = ['Delon Wright', 'Jalen Johnson', 'Sharife Cooper', 'Kevin Huerter', 'Skylar Mays', 'Kevin Knox', 'Lou Williams', 'Timothe Luwawu-Cabarrot', 'Danilo Gallinari', 'Gorgui Dieng', 'Trae Young', "De'Andre Hunter", 'Bogdan Bogdanovic', 'Clint Capela', 'Onyeka Okongwu', 'John Collins']
+print_player_data(names)

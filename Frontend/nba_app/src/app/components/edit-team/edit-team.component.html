@@ -1,14 +1,13 @@
 <div class="div">
   <h1>Edit Team</h1>
-  <div class="div" *ngIf="Team">
-    <input
-      class="form-control"
-      type="text"
-      id="teamInp"
-      #teamName
-      value="{{ Team.teamName }}"
-    />
-  </div>
+  <input
+    class="form-control div"
+    *ngIf="Team"
+    type="text"
+    id="teamInp"
+    #teamName
+    value="{{ Team.teamName }}"
+  />
 
   <div class="container">
     <div class="row">
@@ -94,7 +93,7 @@
             <td colspan="4">
               <mdb-table-pagination
                 [tableEl]="tableEl"
-                [searchDataSource]="elements"
+                [searchDataSource]="tContent"
               ></mdb-table-pagination>
             </td>
           </tr>
@@ -117,5 +116,8 @@
   </button>
   <button class="btn btn-danger" id="enterTeamBtn" (click)="putEditTeam()">
     Edit Team
+  </button>
+  <button (click)="viewTeam(Team._id)" class="btn btn-info btn-round">
+    View
   </button>
 </div>

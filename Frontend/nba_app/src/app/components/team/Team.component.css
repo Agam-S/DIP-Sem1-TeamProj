@@ -5,6 +5,30 @@ h1 {
 
 div,
 a {
-  margin: 10px;
+  margin: 4px;
   display: inline-block;
+}
+.empty {
+  text-align: center;
+  font-size: 1.5em;
+}
+.create-button {
+  margin: 10px;
+}
+input.check {
+  height: 35px !important;
+  width: 35px !important;
+  position: absolute !important;
+  top: 6px !important;
+  right: 0 !important;
+  filter: invert(100%) hue-rotate(18deg) brightness(1.4) !important;
+}
+
+@media (max-width: 768px) {
+  div,
+  a {
+    margin: 8px;
+    text-align: center;
+    display: inline-block;
+  }
 }

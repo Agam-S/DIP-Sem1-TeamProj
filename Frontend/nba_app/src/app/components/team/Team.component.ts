@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Team } from 'src/app/models/Team';
 import { TeamServiceService } from 'src/app/services/team-service.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ViewServiceService } from 'src/app/services/view-service.service';
 
 @Component({
   selector: 'app-team',
@@ -11,27 +10,37 @@ import { ViewServiceService } from 'src/app/services/view-service.service';
   styleUrls: ['./team.component.css'],
 })
 export class TeamComponent implements OnInit, OnDestroy {
-  teamsList: any;
-  idString: string;
+  teamsList: Team[];
+  idString: any;
   id: string;
   subscription: Subscription;
+  statusString: string;
+  deleteTeam: boolean;
+  compareIds: string[] = [];
 
-  constructor(private _api: TeamServiceService, private data: ViewServiceService, private router: Router,) {}
+  constructor(
+    private _api: TeamServiceService,
+    private data: TeamServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this._api
-      .getAllTeams()
-      .subscribe((unpackedTeams) => (this.teamsList = unpackedTeams));
+    this.teamsList = [];
+    this._api.getAllTeams().subscribe((listPlayers) => {
+      for (let i = 0; i < listPlayers.length; i++) {
+        this.teamsList.push(listPlayers[i]);
+      }
+    });
 
-      this.subscription = this.data.currentMessage.subscribe(
-        (message) => (this.id = message)
-      );
-    }
+    this.subscription = this.data.currentMessage.subscribe(
+      (message) => (this.id = message)
+    );
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe;
   }
-  
+
   viewTeam(_id: string) {
     this.idString = _id;
     this.data.changeMessage(this.idString);
@@ -41,5 +50,36 @@ export class TeamComponent implements OnInit, OnDestroy {
     this.idString = _id;
     this.data.changeMessage(this.idString);
     this.router.navigate(['/team/edit']);
+  }
+
+  getIDs(_id: string) {
+    if (this.compareIds.includes(_id)) {
+      this.compareIds.splice(this.compareIds.indexOf(_id), 1);
+    } else {
+      this.compareIds.push(_id);
+    }
+  }
+  compareTeam() {
+    if (this.compareIds.length < 2 || this.compareIds.length > 2) {
+      alert('You can only compare TWO teams at a time');
+    } else if (this.compareIds.length === 0) {
+      alert('Please select a team to compare');
+    } else {
+      this.data.changeList(this.compareIds);
+      this.router.navigate(['/team/compare']);
+    }
+  }
+  removeTeam(_id: string) {
+    if (confirm('Are you sure you want to delete this Team?')) {
+      this._api.removeTeam(_id).subscribe((res: any) => {
+        alert('Team Deleted!');
+        let cUrl = this.router.url;
+        this.router
+          .navigateByUrl('/', { skipLocationChange: true })
+          .then(() => {
+            this.router.navigate([cUrl]);
+          });
+      });
+    }
   }
 }
