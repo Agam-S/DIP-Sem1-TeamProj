@@ -10,9 +10,14 @@
     <a class="nav-link" [routerLink]="['/teams']" (click)="closeNav()"
       >My Teams</a
     >
-    <a class="nav-link" (click)="loginWithRedirect()">
+    <a class="nav-link" (click)="loginWithRedirect()" *ngIf="(auth.isAuthenticated$ | async) === false">
       Log in
     </a>
+
+    <a class="nav-link" (click)="logout()" *ngIf="(auth.isAuthenticated$ | async) === true">
+      Log Out
+    </a>
+
   </div>
 </div>
 

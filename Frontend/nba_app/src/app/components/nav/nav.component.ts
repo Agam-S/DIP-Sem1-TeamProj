@@ -24,5 +24,10 @@ export class NavComponent implements OnInit {
   loginWithRedirect(): void {
     this.auth.loginWithRedirect();
     this.closeNav();
+    }
+    
+  logout(): void {
+      this.auth.logout()
   }
 }
+
