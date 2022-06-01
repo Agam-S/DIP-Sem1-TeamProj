@@ -16,3 +16,7 @@ input {
   text-align: center;
   width: 90%;
 }
+
+button {
+  font-weight: bold;
+}

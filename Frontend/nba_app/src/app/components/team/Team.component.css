@@ -24,6 +24,10 @@ input.check {
   filter: invert(100%) hue-rotate(18deg) brightness(1.4) !important;
 }
 
+button {
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   div,
   a {
