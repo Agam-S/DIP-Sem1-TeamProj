@@ -17,9 +17,6 @@
     <a class="nav-link" (click)="logout()" *ngIf="(auth.isAuthenticated$ | async) === true">
       Log Out
     </a>
-    <div *ngIf="auth.user$ | async as user">
-      <p>{{user.sub}}</p>
-    </div>
   </div>
 </div>
 

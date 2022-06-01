@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService, User } from '@auth0/auth0-angular';
 
@@ -12,12 +13,21 @@ export class NavComponent implements OnInit {
               public auth: AuthService) {}
 
   profileJson: string = null;
-  t: any;
+  t: string;
 
   ngOnInit(): void {
     this.auth.user$.subscribe(
       (profile) => (this.profileJson = JSON.stringify(profile, null, 2)),
     );
+    // profile info
+    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
+
+    // profile token
+    this.auth.user$.subscribe((user) => {
+    this.t = user.sub;
+    console.log(this.t)
+    localStorage.setItem('id_token', JSON.stringify(this.t));
+    });
   }
 
   openNav() {
@@ -28,14 +38,14 @@ export class NavComponent implements OnInit {
     document.getElementById('myNav').style.height = '0%';
   }
 
-  loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
+  async loginWithRedirect() {
+    await this.auth.loginWithRedirect();
     this.closeNav();
-    }
+  }
     
   logout(): void {
       this.auth.logout()
+      localStorage.removeItem('id_token');
   }
-
 }
 
