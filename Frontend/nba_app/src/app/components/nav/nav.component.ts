@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-nav',
@@ -7,7 +8,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
-  constructor(private titleService: Title) {}
+  constructor(private titleService: Title,
+              public auth: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -17,5 +19,10 @@ export class NavComponent implements OnInit {
 
   closeNav() {
     document.getElementById('myNav').style.height = '0%';
+  }
+
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
+    this.closeNav();
   }
 }
