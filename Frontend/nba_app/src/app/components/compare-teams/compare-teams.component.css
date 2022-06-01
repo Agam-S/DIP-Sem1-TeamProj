@@ -1,6 +1,10 @@
 .container {
+margin: auto;
+}
+.bottomText {
   text-align: center;
 }
+
 .inline {
   display: inline;
 }
