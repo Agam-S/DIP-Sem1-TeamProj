@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +11,14 @@ export class NavComponent implements OnInit {
   constructor(private titleService: Title,
               public auth: AuthService) {}
 
-  ngOnInit(): void {}
+  profileJson: string = null;
+  t: any;
+
+  ngOnInit(): void {
+    this.auth.user$.subscribe(
+      (profile) => (this.profileJson = JSON.stringify(profile, null, 2)),
+    );
+  }
 
   openNav() {
     document.getElementById('myNav').style.height = '100%';
@@ -29,5 +36,6 @@ export class NavComponent implements OnInit {
   logout(): void {
       this.auth.logout()
   }
+
 }
 
