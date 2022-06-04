@@ -15,7 +15,8 @@ export class TeamServiceService {
   currentMessage = this.messageSource.asObservable();
   sharedList = this.listSource.asObservable();
 
-  readonly baseUrl: string = 'https://nbaapi.azurewebsites.net/';
+  readonly baseUrl1: string = 'https://nbaapi.azurewebsites.net/';
+  readonly baseUrl: string = 'http://localhost:8080/';
   readonly herokuUrl: string =
     'https://peaceful-shelf-37577.herokuapp.com/alg/';
   constructor(private _http: HttpClient) {}
@@ -31,7 +32,7 @@ export class TeamServiceService {
   }
 
   getAllPlayers(): Observable<Player[]> {
-    const url = this.baseUrl + 'players';
+    const url = 'http://localhost:8080/players';
     return this._http.get<Player[]>(url);
   }
 

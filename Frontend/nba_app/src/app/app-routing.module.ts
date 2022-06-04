@@ -7,14 +7,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TeamComponent } from './components/team/team.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
-
+import { AuthGuard } from '@auth0/auth0-angular'
 const routes: Routes = [
   { path: '', component: AllPlayersComponent },
-  { path: 'create', component: CreateTeamsComponent },
-  { path: 'teams', component: TeamComponent },
-  { path: 'team/edit', component: EditTeamComponent },
-  { path: 'team/view', component: ViewTeamComponent },
-  { path: 'team/compare', component: CompareTeamsComponent },
+  { path: 'create', component: CreateTeamsComponent, canActivate: [AuthGuard] },
+  { path: 'teams', component: TeamComponent, canActivate: [AuthGuard] },
+  { path: 'team/edit', component: EditTeamComponent, canActivate: [AuthGuard] },
+  { path: 'team/view', component: ViewTeamComponent, canActivate: [AuthGuard] },
+  { path: 'team/compare', component: CompareTeamsComponent, canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 

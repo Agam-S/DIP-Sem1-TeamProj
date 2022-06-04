@@ -3,15 +3,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { spawn } = require("child_process");
+const { expressjwt: jwt } = require("express-jwt");
+const jwt_decode = require("jwt-decode");
 
 const app = express();
 require("dotenv").config();
+
+
 
 // Import Routes
 const team = require("./routes/team");
 const player = require("./routes/player");
 const user = require("./routes/user");
 
+const jwtCheck = require("./routes/verifyToken");
 // Importing team model
 const teamModel = require("./models/team");
 
@@ -47,7 +52,20 @@ app.get("/", (req, res) => {
   res.send({ message: "Welcome to the NBA API" });
 });
 
-app.post("/alg/:_id", async (req, res) => {
+app.get("/1", jwtCheck, (req, res) => {
+// save Authorization header
+  const token = req.headers.authorization;
+
+  const token1 = token.replace("Bearer ","");
+
+  const sub = jwt_decode(token1).sub;
+
+  res.send({ message: "Welcome to the token API", token1, sub  });
+
+});
+
+
+app.post("/alg/:_id", jwtCheck, async (req, res) => {
   const foundTeam = await teamModel.findById(req.params._id);
   player_names = foundTeam.players.map((player) => {
     return player.PLAYER_NAME;
@@ -65,3 +83,4 @@ app.post("/alg/:_id", async (req, res) => {
     res.send({ team: foundTeam, winRateP: Number(result) });
   });
 });
+
