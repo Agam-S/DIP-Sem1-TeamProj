@@ -2,6 +2,9 @@ import { HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService, User } from '@auth0/auth0-angular';
+import { HttpClient } from '@angular/common/http';
+import { concatMap, tap, pluck } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-nav',
@@ -10,24 +13,25 @@ import { AuthService, User } from '@auth0/auth0-angular';
 })
 export class NavComponent implements OnInit {
   constructor(private titleService: Title,
-              public auth: AuthService) {}
+              public auth: AuthService, private http: HttpClient) {}
 
   profileJson: string = null;
   t: string;
+  metadata = {};
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(
-      (profile) => (this.profileJson = JSON.stringify(profile, null, 2)),
-    );
-    // profile info
-    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
 
-    // profile token
-    this.auth.user$.subscribe((user) => {
-    this.t = user.sub;
-    console.log(this.t)
-    localStorage.setItem('id_token', JSON.stringify(this.t));
-    });
+    this.http.get('http://localhost:8080/').subscribe(
+      (data) => {
+        console.log(data);
+      }
+    )
+    this.http.get('http://localhost:8080/1').subscribe(
+      (data) => {
+        console.log(data);
+      }
+    )
+
   }
 
   openNav() {
