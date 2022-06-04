@@ -32,7 +32,7 @@ export class TeamServiceService {
   }
 
   getAllPlayers(): Observable<Player[]> {
-    const url = this.baseUrl + 'players';
+    const url = 'http://localhost:8080/players';
     return this._http.get<Player[]>(url);
   }
 

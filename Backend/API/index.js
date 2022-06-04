@@ -9,18 +9,12 @@ const jwt_decode = require("jwt-decode");
 const app = express();
 require("dotenv").config();
 
-const jwtCheck = jwt({
-  secret: 'K8sV6nDbYiVVFw5if1F4HQ3ZhfLWjoU1',
-  audience: 'https://nbaapi.azurewebsites.net',
-  issuer: 'https://dev-5dgpjcl0.us.auth0.com/',
-  algorithms: ["HS256"],
-});
 
 
 // Import Routes
 const team = require("./routes/team");
 const player = require("./routes/player");
-
+const jwtCheck = require("./routes/verifyToken");
 // Importing team model
 const teamModel = require("./models/team");
 
@@ -68,7 +62,7 @@ app.get("/1", jwtCheck, (req, res) => {
 });
 
 
-app.post("/alg/:_id", async (req, res) => {
+app.post("/alg/:_id", jwtCheck, async (req, res) => {
   const foundTeam = await teamModel.findById(req.params._id);
   player_names = foundTeam.players.map((player) => {
     return player.PLAYER_NAME;

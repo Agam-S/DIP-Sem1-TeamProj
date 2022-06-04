@@ -3,7 +3,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { HttpClient } from '@angular/common/http';
-import { concatMap, tap, pluck } from 'rxjs/operators';
 
 
 @Component({
@@ -15,7 +14,6 @@ export class NavComponent implements OnInit {
   constructor(private titleService: Title,
               public auth: AuthService, private http: HttpClient) {}
 
-  profileJson: string = null;
   t: string;
   metadata = {};
 

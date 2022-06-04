@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { Player } from 'src/app/models/Player';
 import { TeamServiceService } from 'src/app/services/team-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-all-players',
@@ -30,7 +31,7 @@ export class AllPlayersComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _api: TeamServiceService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,private _http: HttpClient
   ) {}
 
   ngOnInit() {
