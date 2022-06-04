@@ -10,13 +10,14 @@ require("dotenv").config();
 // Import Routes
 const team = require("./routes/team");
 const player = require("./routes/player");
+const user = require("./routes/user");
 
 // Importing team model
 const teamModel = require("./models/team");
 
 // MongoDB Connection
 mongoose.connect(
-  link,
+  "mongodb+srv://admin:admin1234@prac.r7c5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   { useNewUrlParser: true },
   () => {
     console.log("Connected to DB");
@@ -34,6 +35,7 @@ mongoose.Promise = global.Promise;
 // Routes Redirection
 app.use("/team", team);
 app.use("/players", player);
+app.use("/user", user);
 
 // Server Start
 const server = app.listen(8080, () => {
