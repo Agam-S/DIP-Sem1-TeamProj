@@ -23,6 +23,9 @@ input.check {
   right: 0 !important;
   filter: invert(100%) hue-rotate(18deg) brightness(1.4) !important;
 }
+.search-input {
+  width: 150%;
+}
 
 button {
   font-weight: bold;
