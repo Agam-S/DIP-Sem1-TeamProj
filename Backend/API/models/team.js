@@ -11,6 +11,12 @@ const teamSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.Mixed,
     },
   ],
+
+  user: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  },
+
 });
 
 module.exports = mongoose.model("teams", teamSchema);

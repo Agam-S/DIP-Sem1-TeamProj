@@ -3,6 +3,7 @@ const router = require("express").Router();
 // Importing team model
 const team = require("../models/team");
 const jwtCheck = require("./verifyToken");
+
 // Routes
 router.get("/all", jwtCheck, async (req, res) => {
   try {
@@ -18,6 +19,7 @@ router.post("/create", jwtCheck, async (req, res) => {
     const newTeam = new team({
       teamName: req.body.teamName,
       players: req.body.players,
+      user: req.headers["id_token"]
     });
     const savedTeam = await newTeam.save();
     res.json(savedTeam);

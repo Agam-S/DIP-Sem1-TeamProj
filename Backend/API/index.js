@@ -14,6 +14,8 @@ require("dotenv").config();
 // Import Routes
 const team = require("./routes/team");
 const player = require("./routes/player");
+const user = require("./routes/user");
+
 const jwtCheck = require("./routes/verifyToken");
 // Importing team model
 const teamModel = require("./models/team");
@@ -38,6 +40,7 @@ mongoose.Promise = global.Promise;
 // Routes Redirection
 app.use("/team", team);
 app.use("/players", player);
+app.use("/user", user);
 
 // Server Start
 const server = app.listen(8080, () => {
