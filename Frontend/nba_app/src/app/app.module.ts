@@ -57,7 +57,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
         allowedList: [
           {
             // Match any request that starts 'https://dev-5dgpjcl0.us.auth0.com/api/v2/' (note the asterisk)
-            uri: 'http://localhost:8080/',
+            uri: 'http://localhost:8080/*',
             tokenOptions: {
               // The attached token should target this audience
               audience: 'https://nbaapi.azurewebsites.net',

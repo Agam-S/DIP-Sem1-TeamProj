@@ -18,18 +18,6 @@ export class NavComponent implements OnInit {
   metadata = {};
 
   ngOnInit(): void {
-
-    this.http.get('http://localhost:8080/').subscribe(
-      (data) => {
-        console.log(data);
-      }
-    )
-    this.http.get('http://localhost:8080/1').subscribe(
-      (data) => {
-        console.log(data);
-      }
-    )
-
   }
 
   openNav() {

@@ -3,17 +3,18 @@ const router = require("express").Router();
 // Importing team model
 const team = require("../models/team");
 const jwtCheck = require("./verifyToken");
+
 // Routes
-router.get("/all", jwtCheck, async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
-    const Foundteam = await team.find({});
-    res.json(Foundteam);
+    const foundTeam = await team.find({});
+    res.json(foundTeam);
   } catch (err) {
     res.json({ message: err });
   }
 });
 
-router.post("/create", jwtCheck, async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const newTeam = new team({
       teamName: req.body.teamName,
@@ -26,7 +27,7 @@ router.post("/create", jwtCheck, async (req, res) => {
   }
 });
 
-router.get("/view/:_id", jwtCheck, async (req, res) => {
+router.get("/view/:_id", async (req, res) => {
   try {
     const viewTeam = await team.findById(req.params._id);
     res.json(viewTeam);
@@ -35,7 +36,7 @@ router.get("/view/:_id", jwtCheck, async (req, res) => {
   }
 });
 
-router.put("/edit/:_id",jwtCheck, async (req, res) => {
+router.put("/edit/:_id", async (req, res) => {
   try {
     const putTeam = await team.findByIdAndUpdate(req.params._id, {
       teamName: req.body.teamName,
@@ -47,7 +48,7 @@ router.put("/edit/:_id",jwtCheck, async (req, res) => {
   }
 });
 
-router.delete("/:_id",jwtCheck, async (req, res) => {
+router.delete("/:_id", async (req, res) => {
   try {
         const deleteTeam = await team.findByIdAndDelete(req.params._id);
         res.json(deleteTeam);

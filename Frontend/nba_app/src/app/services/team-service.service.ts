@@ -18,7 +18,7 @@ export class TeamServiceService {
   readonly baseUrl1: string = 'https://nbaapi.azurewebsites.net/';
   readonly baseUrl: string = 'http://localhost:8080/';
   readonly herokuUrl: string =
-    'https://peaceful-shelf-37577.herokuapp.com/alg/';
+    'https://peaceful-shelf-37577.herokuapp.com/';
   constructor(private _http: HttpClient) {}
 
   getAllTeams(): Observable<Team[]> {
@@ -32,7 +32,7 @@ export class TeamServiceService {
   }
 
   getAllPlayers(): Observable<Player[]> {
-    const url = 'http://localhost:8080/players';
+    const url = this.herokuUrl + 'players';
     return this._http.get<Player[]>(url);
   }
 
@@ -46,7 +46,7 @@ export class TeamServiceService {
     return this._http.delete<ITeam>(url);
   }
   generateWinPercentage(_id: string): Observable<Team> {
-    const url = this.herokuUrl + _id;
+    const url = this.herokuUrl+ "alg/" + _id;
     return this._http.post<Team>(url, _id);
   }
 
