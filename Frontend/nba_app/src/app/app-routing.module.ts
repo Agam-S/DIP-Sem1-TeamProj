@@ -7,7 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TeamComponent } from './components/team/team.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
-import { AuthGuard } from '@auth0/auth0-angular'
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   { path: '', component: AllPlayersComponent },

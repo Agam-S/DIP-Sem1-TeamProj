@@ -16,9 +16,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
 import { AuthModule } from '@auth0/auth0-angular';
-import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
-
 
 @NgModule({
   declarations: [
@@ -45,30 +44,30 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
       // The domain and clientId were configured in the previous chapter
       domain: 'dev-5dgpjcl0.us.auth0.com',
       clientId: '85mBti30xF779kzCVVEJ7LyQBpRKbHTm',
-    
+
       // Request this audience at user authentication time
       audience: 'https://nbaapi.azurewebsites.net',
-    
+
       // Request this scope at user authentication time
       scope: 'read:current_user',
-    
-      // Specify configuration for the interceptor              
+
+      // Specify configuration for the interceptor
       httpInterceptor: {
         allowedList: [
           {
             // Match any request that starts 'https://dev-5dgpjcl0.us.auth0.com/api/v2/' (note the asterisk)
-            uri: 'http://localhost:8080/*',
+            uri: 'http://localhost:8080/team/*',
             tokenOptions: {
               // The attached token should target this audience
               audience: 'https://nbaapi.azurewebsites.net',
-    
+
               // The attached token should have these scopes
-              scope: 'read:current_user'
-            }
-          }
-        ]
-      }
-    })
+              scope: 'read:current_user',
+            },
+          },
+        ],
+      },
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },

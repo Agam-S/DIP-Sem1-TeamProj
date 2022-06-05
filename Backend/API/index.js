@@ -9,12 +9,9 @@ const jwt_decode = require("jwt-decode");
 const app = express();
 require("dotenv").config();
 
-
-
 // Import Routes
 const team = require("./routes/team");
 const player = require("./routes/player");
-const user = require("./routes/user");
 
 const jwtCheck = require("./routes/verifyToken");
 // Importing team model
@@ -40,7 +37,6 @@ mongoose.Promise = global.Promise;
 // Routes Redirection
 app.use("/team", team);
 app.use("/players", player);
-app.use("/user", user);
 
 // Server Start
 const server = app.listen(8080, () => {
@@ -53,17 +49,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/1", jwtCheck, (req, res) => {
-// save Authorization header
+  // save Authorization header
   const token = req.headers.authorization;
 
-  const token1 = token.replace("Bearer ","");
+  const token1 = token.replace("Bearer ", "");
 
   const sub = jwt_decode(token1).sub;
 
-  res.send({ message: "Welcome to the token API", token1, sub  });
-
+  res.send({ message: "Welcome to the token API", token1, sub });
 });
-
 
 app.post("/alg/:_id", jwtCheck, async (req, res) => {
   const foundTeam = await teamModel.findById(req.params._id);
@@ -83,4 +77,3 @@ app.post("/alg/:_id", jwtCheck, async (req, res) => {
     res.send({ team: foundTeam, winRateP: Number(result) });
   });
 });
-
