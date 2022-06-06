@@ -48,6 +48,11 @@
   cursor: pointer;
 }
 
+.nav-colour {
+  color:#c945e0 !important;
+  font-weight: 500;
+}
+
 @media screen and (max-height: 450px) {
   .overlay {
     overflow-y: auto;
