@@ -3,15 +3,13 @@ const router = require("express").Router();
 // Importing team model
 const team = require("../models/team");
 const jwtCheck = require("./verifyToken");
-const jwt_decode = require("jwt-decode")
+const decodeToken = require("./decodeToken")
 
 // Routes
 router.get("/all", async (req, res) => {
-  const token = req.headers.authorization;
-  const token1 = token.replace("Bearer ", "");
-  const sub = jwt_decode(token1).sub;
+  const decodedToken = decodeToken(req.headers.authorization);
   try {
-    const foundTeam = await team.find({user: sub});
+    const foundTeam = await team.find({user: decodedToken});
     res.json(foundTeam);
   } catch (err) {
     res.json({ message: err });
@@ -19,15 +17,12 @@ router.get("/all", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-
-  const token = req.headers.authorization;
-  const token1 = token.replace("Bearer ", "");
-  const sub = jwt_decode(token1).sub;
+  const decodedToken = decodeToken(req.headers.authorization);
   try {
     const newTeam = new team({
       teamName: req.body.teamName,
       players: req.body.players,
-      user: sub
+      user: decodedToken
     });
     const savedTeam = await newTeam.save();
     res.json(savedTeam);
@@ -46,14 +41,12 @@ router.get("/view/:_id", async (req, res) => {
 });
 
 router.put("/edit/:_id", async (req, res) => {
-  const token = req.headers.authorization;
-  const token1 = token.replace("Bearer ", "");
-  const sub = jwt_decode(token1).sub;
+  const decodedToken = decodeToken(req.headers.authorization);
   try {
     const putTeam = await team.findByIdAndUpdate(req.params._id, {
       teamName: req.body.teamName,
       players: req.body.players,
-      user: sub
+      user: decodedToken
     });
     res.json(putTeam);
   } catch (err) {
