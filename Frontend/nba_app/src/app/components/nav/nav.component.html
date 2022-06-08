@@ -1,25 +1,39 @@
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <div class="overlay-content">
-    
-    <a class="nav-colour" *ngIf="auth.user$ | async as user" [routerLink]="['/']"
-      > <span style="color: white">Welcome</span> {{user.name}}</a
+    <a
+      class="nav-colour"
+      *ngIf="auth.user$ | async as user"
+      [routerLink]="['/']"
     >
-    <a class="nav-colour" *ngIf="auth.user$ | async as user" [routerLink]="['/']"
-      >{{user.email}}</a
+      <span style="color: white">Welcome</span> {{ user.name }}</a
     >
-    <hr>
+    <a
+      class="nav-colour nav-email"
+      *ngIf="auth.user$ | async as user"
+      [routerLink]="['/']"
+      >{{ user.email }}</a
+    >
+    <hr />
     <a class="nav-link" [routerLink]="['/']" (click)="closeNav()"
       >All Players</a
     >
     <a class="nav-link" [routerLink]="['/teams']" (click)="closeNav()"
       >My Teams</a
     >
-    <a class="nav-link" (click)="loginWithRedirect()" *ngIf="(auth.isAuthenticated$ | async) === false">
+    <a
+      class="nav-link"
+      (click)="loginWithRedirect()"
+      *ngIf="(auth.isAuthenticated$ | async) === false"
+    >
       Log in
     </a>
 
-    <a class="nav-link" (click)="logout()" *ngIf="(auth.isAuthenticated$ | async) === true">
+    <a
+      class="nav-link"
+      (click)="logout()"
+      *ngIf="(auth.isAuthenticated$ | async) === true"
+    >
       Log Out
     </a>
   </div>

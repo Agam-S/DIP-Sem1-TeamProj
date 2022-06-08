@@ -49,16 +49,17 @@
 }
 
 .nav-colour {
-  color:#c945e0 !important;
+  color: #c945e0 !important;
   font-weight: 500;
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 768px) {
   .overlay {
     overflow-y: auto;
   }
   .overlay a {
-    font-size: 20px;
+    font-size: 30px;
+    word-wrap: break-word;
   }
   .overlay .closebtn {
     font-size: 40px;
