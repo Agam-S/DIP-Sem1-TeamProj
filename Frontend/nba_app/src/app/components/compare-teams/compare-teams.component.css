@@ -1,6 +1,10 @@
 .container {
+margin: auto;
+}
+.bottomText {
   text-align: center;
 }
+
 .inline {
   display: inline;
 }
@@ -12,4 +16,5 @@ h3 {
 .div,
 button {
   text-align: center;
+  font-weight: bold;
 }

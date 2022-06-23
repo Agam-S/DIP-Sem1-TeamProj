@@ -2,7 +2,6 @@ h1 {
   text-align: center;
   margin: 1em;
 }
-
 div,
 a {
   margin: 4px;
@@ -22,6 +21,13 @@ input.check {
   top: 6px !important;
   right: 0 !important;
   filter: invert(100%) hue-rotate(18deg) brightness(1.4) !important;
+}
+.search-input {
+  width: 150%;
+}
+
+button {
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {

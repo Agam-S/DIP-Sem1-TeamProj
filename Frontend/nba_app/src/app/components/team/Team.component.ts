@@ -17,6 +17,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   statusString: string;
   deleteTeam: boolean;
   compareIds: string[] = [];
+  searchText: string;
 
   constructor(
     private _api: TeamServiceService,

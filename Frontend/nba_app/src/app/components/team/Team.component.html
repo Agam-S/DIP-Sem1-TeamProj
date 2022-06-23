@@ -1,16 +1,35 @@
 <h1>Teams</h1>
-<button class="btn btn-success create-button" [routerLink]="['/create']">
+<button
+  class="btn btn-success create-button btn-round"
+  [routerLink]="['/create']"
+>
   Create a Team
 </button>
-<button class="btn btn-danger create-button" (click)="compareTeam()">
+<button class="btn btn-danger create-button btn-round" (click)="compareTeam()">
   Compare Team
 </button>
-<br /><br />
+<br />
+<br />
+<div class="container">
+  <div class="row">
+    <div class="search-player">
+      <input
+        class="form-control search-input"
+        type="text"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="Search Team"
+      />
+  </div>
+</div>
+<br />
+<br />
 <div
   class="card"
   style="width: 18rem"
   id="teamOutput"
-  *ngFor="let t of this.teamsList"
+  *ngFor="let t of this.teamsList | filter: searchText; let i = index"
 >
   <img class="card-img-top" />
   <div class="card-body">

@@ -1,6 +1,7 @@
 <div *ngIf="team1">
   <h1>Team 1 : {{ team1.team.teamName }}</h1>
 </div>
+<div class = container>
 <div *ngIf="this.team1">
   <table mdbTable #tableEl="mdbTable" class="z-depth-1">
     <thead>
@@ -63,7 +64,7 @@
     {{ this.resultString }}
   </h2>
 </div>
-<div class="container">
+<div class="bottomText">
   <h6>
     <i>
       Depending on the internet speed, It may take 5 seconds to 1 min to get Win
@@ -72,7 +73,8 @@
   </h6>
 </div>
 <div class="div">
-  <button class="btn btn-danger" id="enterTeamBtn" [routerLink]="['/teams']">
+  <button class="btn btn-danger btn-round" id="enterTeamBtn" [routerLink]="['/teams']">
     Go to myTeams
   </button>
+</div>
 </div>

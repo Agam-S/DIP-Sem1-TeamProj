@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateTeamsComponent } from './components/create-teams/create-teams.component';
-import { TeamComponent } from './components/team/Team.component';
+import { TeamComponent } from './components/team/team.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AllPlayersComponent } from './components/all-players/all-players.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -15,6 +15,9 @@ import { ViewTeamComponent } from './components/view-team/view-team.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CompareTeamsComponent } from './components/compare-teams/compare-teams.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -37,8 +40,38 @@ import { CompareTeamsComponent } from './components/compare-teams/compare-teams.
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     AlertModule,
+    AuthModule.forRoot({
+      // The domain and clientId were configured in the previous chapter
+      domain: 'dev-5dgpjcl0.us.auth0.com',
+      clientId: '85mBti30xF779kzCVVEJ7LyQBpRKbHTm',
+
+      // Request this audience at user authentication time
+      audience: 'https://nbaapi.azurewebsites.net',
+
+      // Request this scope at user authentication time
+      scope: 'read:current_user',
+
+      // Specify configuration for the interceptor
+      httpInterceptor: {
+        allowedList: [
+          {
+            // Match any request that starts 'https://dev-5dgpjcl0.us.auth0.com/api/v2/' (note the asterisk)
+            uri: 'https://nbaapi.azurewebsites.net/team/*',
+            tokenOptions: {
+              // The attached token should target this audience
+              audience: 'https://nbaapi.azurewebsites.net',
+
+              // The attached token should have these scopes
+              scope: 'read:current_user',
+            },
+          },
+        ],
+      },
+    }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
