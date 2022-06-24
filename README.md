@@ -38,4 +38,5 @@ Example : Azure has drop in and extension so you would use the extension or zip 
 
 # How to Change Auth0
 Follow this guide - https://auth0.com/developers/hub/code-samples/full-stack/hello-world/basic-access-control/spa/angular-typescript/express-javascript
+
 TIP: If you make an account, it gives you a detailed documentation on what and how to change
