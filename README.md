@@ -1,8 +1,10 @@
 # DIP-Sem1-TeamProj
-this is a team project about NBA predictions made for Swinburne in DIPLOMA OF IT (ADVANCED PROGRAMMING)
+This project was created for the Diploma of IT (Advanced Programming) program at Swinburne University. The main purpose of this project was to enable users to create custom NBA teams and add their desired players to it.
 
-In this project, user is able to create custom nba teams, add players to it. 
-Moreover, user can compare 2 teams with a machine learning algorithm written in python
+One of the main features of this project is the ability to compare two teams using a machine learning algorithm written in Python with Scikit-Learn. The algorithm was created by collecting two years' worth of NBA player data, generating their win %, and then getting the median value.
+
+The API for this project had two distinct sides. The first was to verify authentication with Auth0 and manage the CRUD (Create, Read, Update, Delete) operations depending on the logged-in user. The second was to run a Python script in ExpressJS that would take a user's team's data, get their win %, compare the results, and then send them back to the frontend.
+
 
 ## Software Architecture
  1. Frontend: Client Side 
